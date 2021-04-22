@@ -28,14 +28,30 @@
  * SOFTWARE.
  */
 
+/**
+ *  @file BlockContext.php
+ *
+ *  The Block Context class
+ *
+ *  @package    Platine\Template\Context
+ *  @author Platine Developers Team
+ *  @copyright  Copyright (c) 2020
+ *  @license    http://opensource.org/licenses/MIT  MIT License
+ *  @link   http://www.iacademy.cf
+ *  @version 1.0.0
+ *  @filesource
+ */
+
 declare(strict_types=1);
 
-namespace Platine\Template\Exception;
+namespace Platine\Template\Context;
 
 /**
- * Class TemplateNotFoundException
- * @package Platine\Template\Exception
+ * Class BlockContext
+ * @package Platine\Template\Context
  */
-class TemplateNotFoundException extends TemplateException
+class BlockContext
 {
+
+
 }

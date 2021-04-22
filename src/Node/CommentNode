@@ -28,14 +28,29 @@
  * SOFTWARE.
  */
 
+/**
+ *  @file CommentNode.php
+ *
+ *  The Template comment node class
+ *
+ *  @package    Platine\Template\Node
+ *  @author Platine Developers Team
+ *  @copyright  Copyright (c) 2020
+ *  @license    http://opensource.org/licenses/MIT  MIT License
+ *  @link   http://www.iacademy.cf
+ *  @version 1.0.0
+ *  @filesource
+ */
+
 declare(strict_types=1);
 
-namespace Platine\Template\Exception;
+namespace Platine\Template\Node;
 
 /**
- * Class TemplateNotFoundException
- * @package Platine\Template\Exception
+ * Class CommentNode
+ * @package Platine\Template\Node
  */
-class TemplateNotFoundException extends TemplateException
+class CommentNode extends TemplateNode
 {
+
 }

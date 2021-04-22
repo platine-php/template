@@ -28,14 +28,30 @@
  * SOFTWARE.
  */
 
+/**
+ *  @file TemplateLoader.php
+ *
+ *  The Base Template loader class
+ *
+ *  @package    Platine\Template\Loader
+ *  @author Platine Developers Team
+ *  @copyright  Copyright (c) 2020
+ *  @license    http://opensource.org/licenses/MIT  MIT License
+ *  @link   http://www.iacademy.cf
+ *  @version 1.0.0
+ *  @filesource
+ */
+
 declare(strict_types=1);
 
-namespace Platine\Template\Exception;
+namespace Platine\Template\Loader;
 
 /**
- * Class TemplateNotFoundException
- * @package Platine\Template\Exception
+ * Class TemplateLoader
+ * @package Platine\Template\Loader
  */
-class TemplateNotFoundException extends TemplateException
+class TemplateLoader
 {
+
+
 }

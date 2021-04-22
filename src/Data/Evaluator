@@ -28,14 +28,30 @@
  * SOFTWARE.
  */
 
+/**
+ *  @file Evaluator.php
+ *
+ *  The Evaluator class
+ *
+ *  @package    Platine\Template\Data
+ *  @author Platine Developers Team
+ *  @copyright  Copyright (c) 2020
+ *  @license    http://opensource.org/licenses/MIT  MIT License
+ *  @link   http://www.iacademy.cf
+ *  @version 1.0.0
+ *  @filesource
+ */
+
 declare(strict_types=1);
 
-namespace Platine\Template\Exception;
+namespace Platine\Template\Data;
 
 /**
- * Class TemplateNotFoundException
- * @package Platine\Template\Exception
+ * Class Evaluator
+ * @package Platine\Template\Data
  */
-class TemplateNotFoundException extends TemplateException
+class Evaluator
 {
+
+
 }

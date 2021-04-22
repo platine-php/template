@@ -33,9 +33,9 @@ declare(strict_types=1);
 namespace Platine\Template\Exception;
 
 /**
- * Class TemplateNotFoundException
+ * Class TemplateParseErrorException
  * @package Platine\Template\Exception
  */
-class TemplateNotFoundException extends TemplateException
+class TemplateParseErrorException extends TemplateException
 {
 }

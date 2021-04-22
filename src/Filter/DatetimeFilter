@@ -28,14 +28,30 @@
  * SOFTWARE.
  */
 
+/**
+ *  @file DatetimeFilter.php
+ *
+ *  The Date and time Filter class
+ *
+ *  @package    Platine\Template\Filter
+ *  @author Platine Developers Team
+ *  @copyright  Copyright (c) 2020
+ *  @license    http://opensource.org/licenses/MIT  MIT License
+ *  @link   http://www.iacademy.cf
+ *  @version 1.0.0
+ *  @filesource
+ */
+
 declare(strict_types=1);
 
-namespace Platine\Template\Exception;
+namespace Platine\Template\Filter;
 
 /**
- * Class TemplateNotFoundException
- * @package Platine\Template\Exception
+ * Class DatetimeFilter
+ * @package Platine\Template\Filter
  */
-class TemplateNotFoundException extends TemplateException
+class DatetimeFilter extends FilterCollection
 {
+
+
 }

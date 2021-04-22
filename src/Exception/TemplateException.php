@@ -32,10 +32,12 @@ declare(strict_types=1);
 
 namespace Platine\Template\Exception;
 
+use Exception;
+
 /**
- * Class TemplateNotFoundException
+ * Class TemplateException
  * @package Platine\Template\Exception
  */
-class TemplateNotFoundException extends TemplateException
+class TemplateException extends Exception
 {
 }
