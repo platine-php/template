@@ -29,11 +29,11 @@
  */
 
 /**
- *  @file NodeList.php
+ *  @file Tag.php
  *
- *  The Template list node class
+ *  The base Template tag class
  *
- *  @package    Platine\Template\Node
+ *  @package    Platine\Template\Tag
  *  @author Platine Developers Team
  *  @copyright  Copyright (c) 2020
  *  @license    http://opensource.org/licenses/MIT  MIT License
@@ -44,20 +44,16 @@
 
 declare(strict_types=1);
 
-namespace Platine\Template\Node;
+namespace Platine\Template\Tag;
 
-use IteratorAggregate;
+use Platine\Template\Node\TemplateNode;
 
 /**
- * Class NodeList
- * @package Platine\Template\Node
+ * Class Tag
+ * @package Platine\Template\Tag
  */
-class NodeList extends TemplateNode implements IteratorAggregate
+class Tag extends TemplateNode
 {
 
-    public function getIterator(): \Traversable
-    {
-        
-    }
 
 }
