@@ -8,6 +8,9 @@
  * This content is released under the MIT License (MIT)
  *
  * Copyright (c) 2020 Platine Template
+ * Copyright (c) 2014 Guz Alexander, http://guzalexander.com
+ * Copyright (c) 2011, 2012 Harald Hanek, http://www.delacap.com
+ * Copyright (c) 2006 Mateo Murphy
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,6 +49,13 @@ declare(strict_types=1);
 
 namespace Platine\Template;
 
+use Platine\Template\Cache\AbstractCache;
+use Platine\Template\Cache\NullCache;
+use Platine\Template\Loader\LoaderInterface;
+use Platine\Template\Loader\StringLoader;
+use Platine\Template\Parser\Context;
+use Platine\Template\Parser\Parser;
+
 /**
  * Class Template
  * @package Platine\Template
@@ -53,5 +63,172 @@ namespace Platine\Template;
 class Template
 {
 
+    /**
+     * The configuration instance
+     * @var Configuration
+     */
+    protected Configuration $config;
 
+    /**
+     * The loader instance
+     * @var LoaderInterface
+     */
+    protected LoaderInterface $loader;
+
+    /**
+     * The Parser instance
+     * @var Parser
+     */
+    protected Parser $parser;
+
+    /**
+     * Tick callback
+     * @var callable|null
+     */
+    protected $tickCallback = null;
+
+    /**
+     * The cache instance
+     * @var AbstractCache
+     */
+    protected AbstractCache $cache;
+
+    /**
+     * List of filters
+     * @var array<int, class-string>
+     */
+    protected array $filters = [];
+
+    /**
+     * List of tags
+     * @var array<string, string>
+     */
+    protected array $tags = [];
+
+    /**
+     * Create new instance
+     * @param Configuration $config
+     * @param LoaderInterface|null $loader
+     * @param AbstractCache|null $cache
+     */
+    public function __construct(
+        Configuration $config,
+        ?LoaderInterface $loader = null,
+        ?AbstractCache $cache = null
+    ) {
+        $this->config = $config;
+        $this->loader = $loader ? $loader : new StringLoader([]);
+        $this->cache = $cache ? $cache : new NullCache($config);
+        $this->parser = new Parser($this);
+
+        //Add custom tags
+        $this->tags = $config->getTags();
+
+        //Add custom filters
+        $this->filters = $config->getFilters();
+    }
+
+    /**
+     * Return the configuration instance
+     * @return Configuration
+     */
+    public function getConfig(): Configuration
+    {
+        return $this->config;
+    }
+
+    /**
+     * Return the loader instance
+     * @return LoaderInterface
+     */
+    public function getLoader(): LoaderInterface
+    {
+        return $this->loader;
+    }
+
+    /**
+     * Return the cache instance
+     * @return AbstractCache
+     */
+    public function getCache(): AbstractCache
+    {
+        return $this->cache;
+    }
+
+    /**
+     * Return the list of tags
+     * @return array<string, string>
+     */
+    public function getTags(): array
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Return the list of filters
+     * @return array<int, class-string>
+     */
+    public function getFilters(): array
+    {
+        return $this->filters;
+    }
+
+    /**
+     * Register Tag
+     * @param string $name
+     * @param string $class
+     * @return $this
+     */
+    public function addTag(string $name, string $class): self
+    {
+        $this->tags[$name] = $class;
+
+        return $this;
+    }
+
+    /**
+     * Register the filter
+     * @param class-string $filter
+     * @return $this
+     */
+    public function addFilter(string $filter): self
+    {
+        $this->filters[] = $filter;
+
+        return $this;
+    }
+
+    /**
+     * Set tick callback
+     * @param callable|null $tickCallback
+     * @return $this
+     */
+    public function setTickCallback(?callable $tickCallback): self
+    {
+        $this->tickCallback = $tickCallback;
+
+        return $this;
+    }
+
+    /**
+     * Render the template
+     * @param string $name the name of template (filename, etc)
+     * @param array<string, mixed> $assigns
+     * @param array<string, mixed> $registers
+     * @return string the final output
+     */
+    public function render(string $name, array $assigns = [], array $registers = []): string
+    {
+        $context = new Context($assigns, $registers);
+
+        if ($this->tickCallback !== null) {
+            $context->setTickCallback($this->tickCallback);
+        }
+
+        foreach ($this->filters as $filter) {
+            $context->addFilter($filter);
+        }
+
+        return $this->parser->render($name, $context);
+    }
 }

@@ -8,6 +8,9 @@
  * This content is released under the MIT License (MIT)
  *
  * Copyright (c) 2020 Platine Template
+ * Copyright (c) 2014 Guz Alexander, http://guzalexander.com
+ * Copyright (c) 2011, 2012 Harald Hanek, http://www.delacap.com
+ * Copyright (c) 2006 Mateo Murphy
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +34,7 @@
 /**
  *  @file FileLoader.php
  *
- *  The File Template loader class
+ *  The file system Template loader class
  *
  *  @package    Platine\Template\Loader
  *  @author Platine Developers Team
@@ -46,12 +49,92 @@ declare(strict_types=1);
 
 namespace Platine\Template\Loader;
 
+use Platine\Template\Configuration;
+use Platine\Template\Exception\NotFoundException;
+use Platine\Template\Exception\ParseException;
+use Platine\Template\Parser\Lexer;
+use Platine\Template\Util\Helper;
+
 /**
  * Class FileLoader
  * @package Platine\Template\Loader
  */
-class FileLoader extends TemplateLoader
+class FileLoader implements LoaderInterface
 {
 
+    /**
+     * The configuration instance
+     * @var Configuration
+     */
+    protected Configuration $config;
 
+    /**
+     * The root path to store file
+     * @var string
+     */
+    protected string $path;
+
+    /**
+     * Create new instance
+     * @param Configuration $config
+     */
+    public function __construct(Configuration $config)
+    {
+        $this->config = $config;
+
+        $dir = $config->getTemplateDir();
+        $path = Helper::normalizePath($dir);
+        $realPath = realpath($path);
+
+        if ($realPath === false || !is_writable($realPath)) {
+            throw new NotFoundException(sprintf(
+                'The template directory [%s] does not exist or writable',
+                $path
+            ));
+        }
+
+        $this->path = $realPath . DIRECTORY_SEPARATOR;
+    }
+
+    /**
+    * {@inheritdoc}
+    */
+    public function read(string $name): string
+    {
+        $file = $this->getFilePath($name);
+
+        return (string) file_get_contents($file);
+    }
+
+
+    protected function getFilePath(string $file): string
+    {
+        $pattern = '/^[^.\/][a-zA-Z0-9_\/-]+$/';
+        if ($this->config->isIncludeWithExtension()) {
+            $pattern = '/^[^.\/][a-zA-Z0-9_\.\/-]+$/';
+        }
+
+        $lexer = new Lexer($pattern);
+        if (!$lexer->match($file)) {
+            throw new ParseException(sprintf(
+                'Invalid template filename [%s]',
+                $file
+            ));
+        }
+
+        if (!$this->config->isIncludeWithExtension()) {
+            $file .= '.' . $this->config->getFileExtension();
+        }
+
+        $realPath = $this->path . $file;
+
+        if (!is_file($realPath)) {
+            throw new NotFoundException(sprintf(
+                'Template file [%s] does not exist',
+                $realPath
+            ));
+        }
+
+        return $realPath;
+    }
 }

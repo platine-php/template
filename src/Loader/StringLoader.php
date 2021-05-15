@@ -8,6 +8,9 @@
  * This content is released under the MIT License (MIT)
  *
  * Copyright (c) 2020 Platine Template
+ * Copyright (c) 2014 Guz Alexander, http://guzalexander.com
+ * Copyright (c) 2011, 2012 Harald Hanek, http://www.delacap.com
+ * Copyright (c) 2006 Mateo Murphy
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +34,7 @@
 /**
  *  @file StringLoader.php
  *
- *  The String Template loader class
+ *  The string template based loader class
  *
  *  @package    Platine\Template\Loader
  *  @author Platine Developers Team
@@ -46,12 +49,42 @@ declare(strict_types=1);
 
 namespace Platine\Template\Loader;
 
+use Platine\Template\Exception\NotFoundException;
+
 /**
  * Class StringLoader
  * @package Platine\Template\Loader
  */
-class StringLoader extends TemplateLoader
+class StringLoader implements LoaderInterface
 {
 
+    /**
+     * The string hash data
+     * @var array<string, string>
+     */
+    protected array $data;
 
+    /**
+     * Create new instance
+     * @param array<string, string> $data
+     */
+    public function __construct(array $data)
+    {
+        $this->data = $data;
+    }
+
+    /**
+     * {@inheritdoc}
+    */
+    public function read(string $name): string
+    {
+        if (!array_key_exists($name, $this->data)) {
+            throw new NotFoundException(sprintf(
+                'Template [%s] does not exist',
+                $name
+            ));
+        }
+
+        return $this->data[$name];
+    }
 }

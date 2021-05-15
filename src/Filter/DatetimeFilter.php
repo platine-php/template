@@ -8,6 +8,9 @@
  * This content is released under the MIT License (MIT)
  *
  * Copyright (c) 2020 Platine Template
+ * Copyright (c) 2014 Guz Alexander, http://guzalexander.com
+ * Copyright (c) 2011, 2012 Harald Hanek, http://www.delacap.com
+ * Copyright (c) 2006 Mateo Murphy
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,12 +49,31 @@ declare(strict_types=1);
 
 namespace Platine\Template\Filter;
 
+use Platine\Template\Parser\AbstractFilter;
+
 /**
  * Class DatetimeFilter
  * @package Platine\Template\Filter
  */
-class DatetimeFilter extends FilterCollection
+class DatetimeFilter extends AbstractFilter
 {
 
+    /**
+     * Formats a date using
+     * @param mixed $variable
+     * @param mixed $format
+     * @return string|mixed
+     */
+    public static function date($variable, $format)
+    {
+        if (!is_string($variable) || !is_string($format)) {
+            return $variable;
+        }
 
+        if (!is_numeric($variable)) {
+            $variable = strtotime($variable);
+        }
+
+        return date($format, (int) $variable);
+    }
 }

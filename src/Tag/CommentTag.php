@@ -8,6 +8,9 @@
  * This content is released under the MIT License (MIT)
  *
  * Copyright (c) 2020 Platine Template
+ * Copyright (c) 2014 Guz Alexander, http://guzalexander.com
+ * Copyright (c) 2011, 2012 Harald Hanek, http://www.delacap.com
+ * Copyright (c) 2006 Mateo Murphy
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,12 +49,21 @@ declare(strict_types=1);
 
 namespace Platine\Template\Tag;
 
+use Platine\Template\Parser\AbstractBlock;
+use Platine\Template\Parser\Context;
+
 /**
  * Class CommentTag
  * @package Platine\Template\Tag
  */
-class CommentTag extends Tag
+class CommentTag extends AbstractBlock
 {
 
-
+    /**
+    * {@inheritdoc}
+    */
+    public function render(Context $context): string
+    {
+        return '';
+    }
 }

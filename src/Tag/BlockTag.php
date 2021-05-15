@@ -8,6 +8,9 @@
  * This content is released under the MIT License (MIT)
  *
  * Copyright (c) 2020 Platine Template
+ * Copyright (c) 2014 Guz Alexander, http://guzalexander.com
+ * Copyright (c) 2011, 2012 Harald Hanek, http://www.delacap.com
+ * Copyright (c) 2006 Mateo Murphy
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,12 +49,39 @@ declare(strict_types=1);
 
 namespace Platine\Template\Tag;
 
+use Platine\Template\Exception\ParseException;
+use Platine\Template\Parser\AbstractBlock;
+use Platine\Template\Parser\Lexer;
+use Platine\Template\Parser\Parser;
+
 /**
  * Class BlockTag
  * @package Platine\Template\Tag
  */
-class BlockTag extends Tag
+class BlockTag extends AbstractBlock
 {
 
 
+    /**
+     * The name of the block
+     * @var string
+     */
+    protected string $blockName;
+
+    /**
+    * {@inheritdoc}
+    */
+    public function __construct(string $markup, &$tokens, Parser $parser)
+    {
+        $lexer = new Lexer('/(\w+)/');
+        if ($lexer->match($markup)) {
+            $this->blockName = $lexer->getStringMatch(1);
+            parent::__construct($markup, $tokens, $parser);
+        } else {
+            throw new ParseException(sprintf(
+                'Syntax Error in "%s" - Valid syntax: block [name]',
+                'block'
+            ));
+        }
+    }
 }

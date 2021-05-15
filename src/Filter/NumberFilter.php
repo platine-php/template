@@ -8,6 +8,9 @@
  * This content is released under the MIT License (MIT)
  *
  * Copyright (c) 2020 Platine Template
+ * Copyright (c) 2014 Guz Alexander, http://guzalexander.com
+ * Copyright (c) 2011, 2012 Harald Hanek, http://www.delacap.com
+ * Copyright (c) 2006 Mateo Murphy
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,12 +49,103 @@ declare(strict_types=1);
 
 namespace Platine\Template\Filter;
 
+use Platine\Template\Parser\AbstractFilter;
+
 /**
  * Class NumberFilter
  * @package Platine\Template\Filter
  */
-class NumberFilter extends FilterCollection
+class NumberFilter extends AbstractFilter
 {
 
+    /**
+     * Addition
+     * @param mixed $variable
+     * @param mixed $operand
+     * @return float|int|mixed
+     */
+    public static function plus($variable, $operand)
+    {
+        if (!is_numeric($variable) || !is_numeric($operand)) {
+            return $variable;
+        }
 
+        if (is_float($operand) || is_float($variable)) {
+            return (float) $variable + (float) $operand;
+        }
+
+        return (int) $variable + (int) $operand;
+    }
+
+    /**
+     * subtraction
+     * @param mixed $variable
+     * @param mixed $operand
+     * @return int|float|mixed
+     */
+    public static function minus($variable, $operand)
+    {
+        if (!is_numeric($variable) || !is_numeric($operand)) {
+            return $variable;
+        }
+
+        if (is_float($operand) || is_float($variable)) {
+            return (float) $variable - (float) $operand;
+        }
+
+        return (int) $variable - (int) $operand;
+    }
+
+    /**
+     * Times
+     * @param mixed $variable
+     * @param mixed $operand
+     * @return int|float|mixed
+     */
+    public static function times($variable, $operand)
+    {
+        if (!is_numeric($variable) || !is_numeric($operand)) {
+            return $variable;
+        }
+
+        if (is_float($operand) || is_float($variable)) {
+            return (float) $variable * (float) $operand;
+        }
+
+        return (int) $variable * (int) $operand;
+    }
+
+    /**
+     * Modulo
+     * @param mixed $variable
+     * @param mixed $operand
+     * @return int|float|mixed
+     */
+    public static function modulo($variable, $operand)
+    {
+        if (!is_numeric($variable) || !is_numeric($operand)) {
+            return $variable;
+        }
+
+        if (is_float($operand) || is_float($variable)) {
+            return fmod((float) $variable, (float) $operand);
+        }
+
+        return fmod((int) $variable, (int) $operand);
+    }
+
+    /**
+     * Modulo
+     * @param mixed $variable
+     * @param mixed $number
+     * @return float|mixed
+     */
+    public static function round($variable, $number = 0)
+    {
+        if (!is_numeric($variable) || !is_numeric($number)) {
+            return $variable;
+        }
+
+        return round((float) $variable, (int) $number);
+    }
 }

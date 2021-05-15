@@ -1,0 +1,33 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Platine\Test\Template\Filter;
+
+use Platine\PlatineTestCase;
+use Platine\Template\Filter\DatetimeFilter;
+
+/**
+ * DatetimeFilter class tests
+ *
+ * @group core
+ * @group template
+ */
+class DatetimeFilterTest extends PlatineTestCase
+{
+
+    public function testDateParamsIsNotStrings(): void
+    {
+        $this->assertEquals(23, DatetimeFilter::date(23, 22));
+    }
+
+    public function testDateValueIsNotNumeric(): void
+    {
+        $this->assertEquals(2021, DatetimeFilter::date('2021-01-01', 'Y'));
+    }
+
+    public function testDateValueIsNumeric(): void
+    {
+        $this->assertEquals('1973-03-03', DatetimeFilter::date('100000000', 'Y-m-d'));
+    }
+}
