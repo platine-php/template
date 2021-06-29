@@ -82,7 +82,7 @@ class FileLoader implements LoaderInterface
     {
         $this->config = $config;
 
-        $dir = $config->getTemplateDir();
+        $dir = $config->get('template_dir');
         $path = Helper::normalizePath($dir);
         $realPath = realpath($path);
 
@@ -110,9 +110,6 @@ class FileLoader implements LoaderInterface
     protected function getFilePath(string $file): string
     {
         $pattern = '/^[^.\/][a-zA-Z0-9_\/-]+$/';
-        if ($this->config->isIncludeWithExtension()) {
-            $pattern = '/^[^.\/][a-zA-Z0-9_\.\/-]+$/';
-        }
 
         $lexer = new Lexer($pattern);
         if (!$lexer->match($file)) {
@@ -122,8 +119,9 @@ class FileLoader implements LoaderInterface
             ));
         }
 
-        if (!$this->config->isIncludeWithExtension()) {
-            $file .= '.' . $this->config->getFileExtension();
+        $extension = $this->config->get('file_extension');
+        if (!empty($extension)) {
+            $file .= '.' . $extension;
         }
 
         $realPath = $this->path . $file;

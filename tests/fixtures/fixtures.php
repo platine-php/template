@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Platine\Test\Fixture;
 
 use Countable;
-use Generator;
 use Platine\Template\Parser\AbstractBlock;
 use Platine\Template\Parser\AbstractFilter;
 use Platine\Template\Parser\AbstractTag;

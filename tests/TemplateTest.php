@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Platine\Test\Template;
 
-use Platine\PlatineTestCase;
+use Platine\Dev\PlatineTestCase;
 use Platine\Template\Cache\NullCache;
 use Platine\Template\Configuration;
 use Platine\Template\Exception\ParseException;
@@ -25,7 +25,16 @@ class TemplateTest extends PlatineTestCase
 
     public function testConstructor(): void
     {
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
         $loader = $this->getMockInstance(StringLoader::class);
         $cache = $this->getMockInstance(NullCache::class);
 
@@ -38,7 +47,16 @@ class TemplateTest extends PlatineTestCase
 
     public function testTags(): void
     {
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
         $loader = $this->getMockInstance(StringLoader::class);
         $cache = $this->getMockInstance(NullCache::class);
 
@@ -51,7 +69,16 @@ class TemplateTest extends PlatineTestCase
 
     public function testFilters(): void
     {
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
         $loader = $this->getMockInstance(StringLoader::class);
         $cache = $this->getMockInstance(NullCache::class);
 
@@ -64,7 +91,16 @@ class TemplateTest extends PlatineTestCase
 
     public function testSetTickCallback(): void
     {
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
         $loader = $this->getMockInstance(StringLoader::class);
         $cache = $this->getMockInstance(NullCache::class);
 
@@ -78,7 +114,16 @@ class TemplateTest extends PlatineTestCase
 
     public function testRender(): void
     {
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
         $loader = $this->getMockInstance(StringLoader::class, ['read' => '{% tnh %}']);
         $cache = $this->getMockInstance(NullCache::class, ['read' => false]);
 
@@ -97,7 +142,16 @@ class TemplateTest extends PlatineTestCase
     public function testRenderMissingDelimiter(): void
     {
         $this->expectException(ParseException::class);
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
         $loader = $this->getMockInstance(StringLoader::class, ['read' => '{% tnh %}']);
         $cache = $this->getMockInstance(NullCache::class, ['read' => false]);
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Platine\Test\Template\Util;
 
-use Platine\PlatineTestCase;
+use Platine\Dev\PlatineTestCase;
 use Platine\Template\Util\Helper;
 
 /**

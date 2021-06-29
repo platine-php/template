@@ -55,6 +55,7 @@ use Platine\Template\Loader\LoaderInterface;
 use Platine\Template\Loader\StringLoader;
 use Platine\Template\Parser\Context;
 use Platine\Template\Parser\Parser;
+use Platine\Template\Parser\AbstractTag;
 
 /**
  * Class Template
@@ -101,7 +102,7 @@ class Template
 
     /**
      * List of tags
-     * @var array<string, string>
+     * @var array<string, string|AbstractTag>
      */
     protected array $tags = [];
 
@@ -122,10 +123,10 @@ class Template
         $this->parser = new Parser($this);
 
         //Add custom tags
-        $this->tags = $config->getTags();
+        $this->tags = $config->get('tags');
 
         //Add custom filters
-        $this->filters = $config->getFilters();
+        $this->filters = $config->get('filters');
     }
 
     /**
@@ -157,7 +158,7 @@ class Template
 
     /**
      * Return the list of tags
-     * @return array<string, string>
+     * @return array<string, string|AbstractTag>
      */
     public function getTags(): array
     {
@@ -176,10 +177,10 @@ class Template
     /**
      * Register Tag
      * @param string $name
-     * @param string $class
+     * @param string|AbstractTag $class
      * @return $this
      */
-    public function addTag(string $name, string $class): self
+    public function addTag(string $name, $class): self
     {
         $this->tags[$name] = $class;
 

@@ -84,8 +84,8 @@ abstract class AbstractCache
     {
         $this->config = $config;
 
-        $this->expire = $config->getCacheExpire();
-        $this->prefix = $config->getCachePrefix();
+        $this->expire = $config->get('cache_expire');
+        $this->prefix = $config->get('cache_prefix');
     }
 
     /**

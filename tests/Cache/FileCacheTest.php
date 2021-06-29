@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Platine\Test\Template\Cache;
 
 use org\bovigo\vfs\vfsStream;
-use Platine\PlatineTestCase;
+use Platine\Dev\PlatineTestCase;
 use Platine\Template\Cache\FileCache;
 use Platine\Template\Configuration;
 use Platine\Template\Exception\NotFoundException;
@@ -36,8 +36,15 @@ class FileCacheTest extends PlatineTestCase
 
         $this->expectException(NotFoundException::class);
         $mock_realpath_to_false = true;
-        $cfg = $this->getMockInstance(Configuration::class, [
-            'getCacheDir' => '/path/not/found/'
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '/path/not/found',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
         ]);
 
         (new FileCache($cfg));
@@ -52,8 +59,15 @@ class FileCacheTest extends PlatineTestCase
 
         $mock_realpath_to_same = true;
 
-        $cfg = $this->getMockInstance(Configuration::class, [
-            'getCacheDir' => $path
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => $path,
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
         ]);
 
         (new FileCache($cfg));
@@ -65,8 +79,15 @@ class FileCacheTest extends PlatineTestCase
 
         $path = $this->vfsCachePath->url();
 
-        $cfg = $this->getMockInstance(Configuration::class, [
-            'getCacheDir' => $path
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => $path,
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
         ]);
 
         $mock_realpath_to_same = true;
@@ -85,8 +106,15 @@ class FileCacheTest extends PlatineTestCase
 
         $path = $this->vfsCachePath->url();
 
-        $cfg = $this->getMockInstance(Configuration::class, [
-            'getCacheDir' => $path
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => $path,
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
         ]);
 
         $mock_realpath_to_same = true;
@@ -109,8 +137,15 @@ class FileCacheTest extends PlatineTestCase
 
         $path = $this->vfsCachePath->url();
 
-        $cfg = $this->getMockInstance(Configuration::class, [
-            'getCacheDir' => $path
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => $path,
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
         ]);
 
         $mock_realpath_to_same = true;
@@ -131,8 +166,15 @@ class FileCacheTest extends PlatineTestCase
                $mock_time_to_zero;
 
         $path = $this->vfsCachePath->url();
-        $cfg = $this->getMockInstance(Configuration::class, [
-            'getCacheDir' => $path
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => $path,
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
         ]);
 
         $mock_realpath_to_same = true;
@@ -153,8 +195,15 @@ class FileCacheTest extends PlatineTestCase
 
         $path = $this->vfsCachePath->url();
 
-        $cfg = $this->getMockInstance(Configuration::class, [
-            'getCacheDir' => $path
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => $path,
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
         ]);
 
         $mock_realpath_to_same = true;
@@ -175,8 +224,15 @@ class FileCacheTest extends PlatineTestCase
 
         $path = $this->vfsCachePath->url();
 
-        $cfg = $this->getMockInstance(Configuration::class, [
-            'getCacheDir' => $path
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => $path,
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
         ]);
 
         $mock_realpath_to_same = true;
@@ -192,8 +248,15 @@ class FileCacheTest extends PlatineTestCase
 
         $path = $this->vfsCachePath->url();
 
-        $cfg = $this->getMockInstance(Configuration::class, [
-            'getCacheDir' => $path
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => $path,
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
         ]);
 
         $mock_realpath_to_same = true;
@@ -210,8 +273,15 @@ class FileCacheTest extends PlatineTestCase
 
         $path = $this->vfsCachePath->url();
 
-        $cfg = $this->getMockInstance(Configuration::class, [
-            'getCacheDir' => $path
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => $path,
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
         ]);
 
         $mock_realpath_to_same = true;
@@ -232,8 +302,15 @@ class FileCacheTest extends PlatineTestCase
 
         $path = $this->vfsCachePath->url();
 
-        $cfg = $this->getMockInstance(Configuration::class, [
-            'getCacheDir' => $path
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => $path,
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
         ]);
 
         $mock_realpath_to_same = true;

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Platine\Test\Template\Loader;
 
 use org\bovigo\vfs\vfsStream;
-use Platine\PlatineTestCase;
+use Platine\Dev\PlatineTestCase;
 use Platine\Template\Configuration;
 use Platine\Template\Exception\NotFoundException;
 use Platine\Template\Exception\ParseException;
@@ -37,8 +37,16 @@ class FileLoaderTest extends PlatineTestCase
 
         $this->expectException(NotFoundException::class);
         $mock_realpath_to_false = true;
-        $cfg = $this->getMockInstance(Configuration::class, [
-            'getTemplateDir' => '/path/not/found/'
+
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '/path/not/found',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
         ]);
 
         (new FileLoader($cfg));
@@ -53,8 +61,15 @@ class FileLoaderTest extends PlatineTestCase
 
         $mock_realpath_to_same = true;
 
-        $cfg = $this->getMockInstance(Configuration::class, [
-            'getTemplateDir' => $path
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => $path,
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
         ]);
 
         (new FileLoader($cfg));
@@ -66,9 +81,15 @@ class FileLoaderTest extends PlatineTestCase
         global $mock_realpath_to_same;
 
         $path = $this->vfsTemplatePath->url();
-        $cfg = $this->getMockInstance(Configuration::class, [
-            'getTemplateDir' => $path,
-            'isIncludeWithExtension' => false
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => $path,
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
         ]);
 
         $mock_realpath_to_same = true;
@@ -83,9 +104,15 @@ class FileLoaderTest extends PlatineTestCase
     {
         global $mock_realpath_to_same;
         $path = $this->vfsTemplatePath->url();
-        $cfg = $this->getMockInstance(Configuration::class, [
-            'getTemplateDir' => $path,
-            'isIncludeWithExtension' => false
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => $path,
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
         ]);
 
         $mock_realpath_to_same = true;
@@ -101,16 +128,22 @@ class FileLoaderTest extends PlatineTestCase
         global $mock_realpath_to_same;
 
         $path = $this->vfsTemplatePath->url();
-        $cfg = $this->getMockInstance(Configuration::class, [
-            'getTemplateDir' => $path,
-            'isIncludeWithExtension' => true
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => $path,
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
         ]);
 
         $mock_realpath_to_same = true;
 
         $expected = '{% foo %}';
-        $file = $this->createVfsFile('page.tpl', $this->vfsTemplatePath, $expected);
+        $this->createVfsFile('page.tpl', $this->vfsTemplatePath, $expected);
         $o = new FileLoader($cfg);
-        $this->assertEquals($o->read('page.tpl'), $expected);
+        $this->assertEquals($o->read('page'), $expected);
     }
 }

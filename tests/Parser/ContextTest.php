@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Platine\Test\Template\Parser;
 
-use Platine\PlatineTestCase;
+use Platine\Dev\PlatineTestCase;
 use Platine\Template\Exception\TemplateException;
 use Platine\Template\Parser\Context;
 use Platine\Template\Parser\Parser;
@@ -33,7 +33,7 @@ class ContextTest extends PlatineTestCase
         $this->assertInstanceOf(Context::class, $c);
     }
 
-    public function testSetContext(): void
+    public function testSetParser(): void
     {
         $parser = $this->getMockInstance(Parser::class);
         $c = new Context();

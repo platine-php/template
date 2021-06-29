@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Platine\Test\Template\Tag;
 
-use Platine\PlatineTestCase;
+use Platine\Dev\PlatineTestCase;
 use Platine\Template\Parser\Context;
 use Platine\Template\Parser\Parser;
 use Platine\Template\Tag\RawTag;

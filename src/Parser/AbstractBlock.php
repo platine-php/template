@@ -117,29 +117,36 @@ class AbstractBlock extends AbstractTag
                         return;
                     }
 
-                    $tagNameClass = null;
+                    $node = null;
                     if (array_key_exists($lexerTag->getStringMatch(1), $tags)) {
                         $tagNameClass = $tags[$lexerTag->getStringMatch(1)];
+                        if (is_string($tagNameClass)) {
+                            $node = new $tagNameClass(
+                                $lexerTag->getStringMatch(2),
+                                $tokens,
+                                $this->parser
+                            );
+                        } else {
+                            $node = $tagNameClass;
+                        }
                     } else {
                         //check for core tags
                         $coreTagName = $lexerTag->getStringMatch(1);
                         $coreTagNameClass = 'Platine\\Template\\Tag\\' . ucwords($coreTagName) . 'Tag';
                         if (class_exists($coreTagNameClass)) {
-                            $tagNameClass = $coreTagNameClass;
+                            $node = new $coreTagNameClass(
+                                $lexerTag->getStringMatch(2),
+                                $tokens,
+                                $this->parser
+                            );
                         }
                     }
 
-                    if ($tagNameClass !== null) {
-                        $node = new $tagNameClass(
-                            $lexerTag->getStringMatch(2),
-                            $tokens,
-                            $this->parser
-                        );
-
+                    if ($node !== null) {
                         if (!$node instanceof AbstractTag) {
                             throw new InvalidArgumentException(sprintf(
                                 'Tag class [%s] must extends base classes [%s] or [%s]',
-                                $tagNameClass,
+                                get_class($node),
                                 AbstractTag::class,
                                 AbstractBlock::class
                             ));

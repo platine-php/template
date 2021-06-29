@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Platine\Test\Template\Cache;
 
-use Platine\PlatineTestCase;
+use Platine\Dev\PlatineTestCase;
 use Platine\Template\Cache\MemoryCache;
 use Platine\Template\Configuration;
 
@@ -19,7 +19,16 @@ class MemoryCacheTest extends PlatineTestCase
 
     public function testRead(): void
     {
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
 
         $o = new MemoryCache($cfg);
         $this->assertFalse($o->read('fookey'));
@@ -33,7 +42,16 @@ class MemoryCacheTest extends PlatineTestCase
 
     public function testExists(): void
     {
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
 
         $o = new MemoryCache($cfg);
         $this->assertFalse($o->exists('fookey'));
@@ -45,7 +63,16 @@ class MemoryCacheTest extends PlatineTestCase
 
     public function testWrite(): void
     {
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
 
         $o = new MemoryCache($cfg);
         $this->assertTrue($o->write('fookey', 'foovalue'));
@@ -53,7 +80,16 @@ class MemoryCacheTest extends PlatineTestCase
 
     public function testFlush(): void
     {
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
 
         $o = new MemoryCache($cfg);
         $this->assertTrue($o->flush());

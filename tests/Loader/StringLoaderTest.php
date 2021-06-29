@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Platine\Test\Template\Loader;
 
-use Platine\PlatineTestCase;
+use Platine\Dev\PlatineTestCase;
 use Platine\Template\Exception\NotFoundException;
 use Platine\Template\Loader\StringLoader;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Platine\Test\Template\Parser;
 
-use Platine\PlatineTestCase;
+use Platine\Dev\PlatineTestCase;
 use Platine\Template\Configuration;
 use Platine\Template\Parser\Context;
 use Platine\Template\Parser\Parser;
@@ -70,7 +70,16 @@ class VariableTest extends PlatineTestCase
     public function testConstructorUsingAutoEscape(): void
     {
         $markup = 'bar|char';
-        $cfg = $this->getMockInstance(Configuration::class, ['isAutoEscape' => true]);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
         $parser = $this->getMockInstance(Parser::class, ['getConfig' => $cfg]);
         $v = new Variable($markup, $parser);
         $this->assertEquals($markup, $this->getPropertyValue(Variable::class, $v, 'markup'));
@@ -90,7 +99,16 @@ class VariableTest extends PlatineTestCase
     public function testConstructorUsingForceAutoEscapeToFalse(): void
     {
         $markup = 'bar|char|raw';
-        $cfg = $this->getMockInstance(Configuration::class, ['isAutoEscape' => true]);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
         $parser = $this->getMockInstance(Parser::class, ['getConfig' => $cfg]);
         $v = new Variable($markup, $parser);
         $this->assertEquals($markup, $this->getPropertyValue(Variable::class, $v, 'markup'));

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Platine\Test\Template\Tag;
 
 use ArrayIterator;
-use Platine\PlatineTestCase;
+use Platine\Dev\PlatineTestCase;
 use Platine\Template\Exception\ParseException;
 use Platine\Template\Parser\Context;
 use Platine\Template\Parser\Parser;

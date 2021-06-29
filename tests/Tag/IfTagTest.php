@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Platine\Test\Template\Tag;
 
-use Platine\PlatineTestCase;
+use Platine\Dev\PlatineTestCase;
 use Platine\Template\Exception\ParseException;
 use Platine\Template\Exception\RenderException;
 use Platine\Template\Parser\Context;

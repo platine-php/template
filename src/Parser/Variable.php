@@ -138,7 +138,7 @@ class Variable
             }
         }
 
-        if ($this->parser->getConfig()->isAutoEscape()) {
+        if ($this->parser->getConfig()->get('auto_escape')) {
             // if auto_escape is enabled, and
             // - there's no raw filter, and
             // - no escape filter

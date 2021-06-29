@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Platine\Test\Template\Cache;
 
-use Platine\PlatineTestCase;
+use Platine\Dev\PlatineTestCase;
 use Platine\Template\Cache\ApcCache;
 use Platine\Template\Configuration;
 use Platine\Template\Exception\TemplateException;
@@ -24,7 +24,16 @@ class ApcCacheTest extends PlatineTestCase
 
         $mock_extension_loaded_to_false = true;
         $this->expectException(TemplateException::class);
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
 
         (new ApcCache($cfg));
     }
@@ -37,7 +46,16 @@ class ApcCacheTest extends PlatineTestCase
         $mock_ini_get_to_false = true;
 
         $this->expectException(TemplateException::class);
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
 
         (new ApcCache($cfg));
     }
@@ -51,7 +69,16 @@ class ApcCacheTest extends PlatineTestCase
         $mock_extension_loaded_to_true = true;
         $mock_ini_get_to_true = true;
 
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
         $ac = new ApcCache($cfg);
 
         $mock_apcu_fetch_to_false = true;
@@ -62,7 +89,7 @@ class ApcCacheTest extends PlatineTestCase
         //Return correct data
         $key = uniqid();
         $content = $ac->read($key);
-        $this->assertEquals(md5($key), $content);
+        $this->assertEquals(md5('__platine_template' . $key), $content);
     }
 
 
@@ -77,7 +104,16 @@ class ApcCacheTest extends PlatineTestCase
         $mock_ini_get_to_true = true;
 
         $key = uniqid();
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
 
         $ac = new ApcCache($cfg);
 
@@ -101,7 +137,16 @@ class ApcCacheTest extends PlatineTestCase
         $mock_ini_get_to_true = true;
         $mock_apcu_store_to_false = true;
 
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
 
         $ac = new ApcCache($cfg);
         $result = $ac->write('key', 'data');
@@ -122,7 +167,16 @@ class ApcCacheTest extends PlatineTestCase
         $mock_ini_get_to_true = true;
         $mock_apcu_store_to_true = true;
 
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
         $ac = new ApcCache($cfg);
         $result = $ac->write($key, $data);
         $this->assertTrue($result);
@@ -138,7 +192,16 @@ class ApcCacheTest extends PlatineTestCase
         $mock_ini_get_to_true = true;
         $mock_apcu_clear_cache_to_false = true;
 
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
 
         $ac = new ApcCache($cfg);
 
@@ -155,7 +218,16 @@ class ApcCacheTest extends PlatineTestCase
         $mock_ini_get_to_true = true;
         $mock_apcu_clear_cache_to_true = true;
 
-        $cfg = $this->getMockInstance(Configuration::class);
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
 
         $ac = new ApcCache($cfg);
 

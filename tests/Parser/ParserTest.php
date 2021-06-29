@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Platine\Test\Template\Parser;
 
-use Platine\PlatineTestCase;
+use Platine\Dev\PlatineTestCase;
 use Platine\Template\Cache\NullCache;
 use Platine\Template\Configuration;
 use Platine\Template\Parser\Document;
