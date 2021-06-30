@@ -74,4 +74,21 @@ class Configuration extends AbstractConfiguration
             'tags' => 'array',
         ];
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDefault(): array
+    {
+        return [
+            'cache_expire' => 3600,
+            'cache_dir' => 'cache',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => 'templates',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ];
+    }
 }

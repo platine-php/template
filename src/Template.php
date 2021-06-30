@@ -108,25 +108,25 @@ class Template
 
     /**
      * Create new instance
-     * @param Configuration $config
+     * @param Configuration|null $config
      * @param LoaderInterface|null $loader
      * @param AbstractCache|null $cache
      */
     public function __construct(
-        Configuration $config,
+        ?Configuration $config = null,
         ?LoaderInterface $loader = null,
         ?AbstractCache $cache = null
     ) {
-        $this->config = $config;
-        $this->loader = $loader ? $loader : new StringLoader([]);
-        $this->cache = $cache ? $cache : new NullCache($config);
+        $this->config = $config ?? new Configuration([]);
+        $this->loader = $loader ?? new StringLoader([]);
+        $this->cache = $cache ?? new NullCache($config);
         $this->parser = new Parser($this);
 
         //Add custom tags
-        $this->tags = $config->get('tags');
+        $this->tags = $this->config->get('tags');
 
         //Add custom filters
-        $this->filters = $config->get('filters');
+        $this->filters = $this->config->get('filters');
     }
 
     /**

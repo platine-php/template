@@ -67,12 +67,12 @@ class FileCache extends AbstractCache
 
     /**
      * Create new instance
-     * @param Configuration $config
+     * @param Configuration|null $config
      */
-    public function __construct(Configuration $config)
+    public function __construct(?Configuration $config = null)
     {
         parent::__construct($config);
-        $dir = $config->get('cache_dir');
+        $dir = $this->config->get('cache_dir');
         $path = Helper::normalizePath($dir);
         $realPath = realpath($path);
 

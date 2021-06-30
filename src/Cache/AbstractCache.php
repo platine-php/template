@@ -78,14 +78,14 @@ abstract class AbstractCache
 
     /**
      * Create new instance
-     * @param Configuration $config
+     * @param Configuration|null $config
      */
-    public function __construct(Configuration $config)
+    public function __construct(?Configuration $config = null)
     {
-        $this->config = $config;
+        $this->config = $config ?? new Configuration([]);
 
-        $this->expire = $config->get('cache_expire');
-        $this->prefix = $config->get('cache_prefix');
+        $this->expire = $this->config->get('cache_expire');
+        $this->prefix = $this->config->get('cache_prefix');
     }
 
     /**

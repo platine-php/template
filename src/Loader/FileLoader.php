@@ -76,13 +76,13 @@ class FileLoader implements LoaderInterface
 
     /**
      * Create new instance
-     * @param Configuration $config
+     * @param Configuration|null $config
      */
-    public function __construct(Configuration $config)
+    public function __construct(?Configuration $config = null)
     {
-        $this->config = $config;
+        $this->config = $config ?? new Configuration([]);
 
-        $dir = $config->get('template_dir');
+        $dir = $this->config->get('template_dir');
         $path = Helper::normalizePath($dir);
         $realPath = realpath($path);
 
