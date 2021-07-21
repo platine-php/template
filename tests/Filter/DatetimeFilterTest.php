@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Platine\Test\Template\Filter;
 
+use DateTime;
 use Platine\Dev\PlatineTestCase;
 use Platine\Template\Filter\DatetimeFilter;
 
@@ -24,6 +25,11 @@ class DatetimeFilterTest extends PlatineTestCase
     public function testDateValueIsNotNumeric(): void
     {
         $this->assertEquals(2021, DatetimeFilter::date('2021-01-01', 'Y'));
+    }
+
+    public function testDateValueIsDateTime(): void
+    {
+        $this->assertEquals('2021', DatetimeFilter::date(new DateTime('2021'), 'Y'));
     }
 
     public function testDateValueIsNumeric(): void

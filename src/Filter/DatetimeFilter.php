@@ -49,6 +49,7 @@ declare(strict_types=1);
 
 namespace Platine\Template\Filter;
 
+use DateTimeInterface;
 use Platine\Template\Parser\AbstractFilter;
 
 /**
@@ -59,15 +60,19 @@ class DatetimeFilter extends AbstractFilter
 {
 
     /**
-     * Formats a date using
-     * @param mixed $variable
+     * Formats a date
+     * @param string|DateTimeInterface $variable
      * @param mixed $format
      * @return string|mixed
      */
     public static function date($variable, $format)
     {
-        if (!is_string($variable) || !is_string($format)) {
+        if (!is_string($variable) && !$variable instanceof DateTimeInterface) {
             return $variable;
+        }
+
+        if ($variable instanceof DateTimeInterface) {
+            return $variable->format($format);
         }
 
         if (!is_numeric($variable)) {
