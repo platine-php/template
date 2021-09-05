@@ -232,4 +232,26 @@ class Template
 
         return $this->parser->render($name, $context);
     }
+    
+    /**
+     * Render the template using the string
+     * @param string $content the template content
+     * @param array<string, mixed> $assigns
+     * @param array<string, mixed> $registers
+     * @return string the final output
+     */
+    public function renderString(string $content, array $assigns = [], array $registers = []): string
+    {
+        $context = new Context($assigns, $registers);
+
+        if ($this->tickCallback !== null) {
+            $context->setTickCallback($this->tickCallback);
+        }
+
+        foreach ($this->filters as $filter) {
+            $context->addFilter($filter);
+        }
+
+        return $this->parser->renderString($content, $context);
+    }
 }

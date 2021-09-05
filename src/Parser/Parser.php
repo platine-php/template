@@ -155,6 +155,21 @@ class Parser
                     ->getRoot()
                     ->render($context);
     }
+    
+    /**
+     * Render the template using string content
+     * @param string $content the template name
+     * @param Context $context
+     * @return string
+     */
+    public function renderString(string $content, Context $context): string
+    {
+        $tokens = $this->tokenize($content);
+        $this->root = new Document($tokens, $this);
+        
+        return $this->getRoot()
+                    ->render($context);
+    }
 
     /**
      * Parser the given source string to tokens

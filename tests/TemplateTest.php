@@ -138,6 +138,33 @@ class TemplateTest extends PlatineTestCase
 
         $this->assertEquals($result, CustomTag::class);
     }
+    
+    public function testRenderString(): void
+    {
+        $cfg = new Configuration([
+            'cache_expire' => 3600,
+            'cache_dir' => '.',
+            'cache_prefix' => '__platine_template',
+            'template_dir' => '.',
+            'file_extension' => 'tpl',
+            'auto_escape' => true,
+            'filters' => [],
+            'tags' => [],
+        ]);
+        $loader = $this->getMockInstance(StringLoader::class, ['read' => '{% tnh %}']);
+        $cache = $this->getMockInstance(NullCache::class, ['read' => false]);
+
+        $t = new Template($cfg, $loader, $cache);
+        $t->setTickCallback(function () {
+        });
+
+        $t->addTag('tnh', CustomTag::class);
+        $t->addFilter(stdClass::class);
+
+        $result = $t->renderString('{% tnh %}', [], []);
+
+        $this->assertEquals($result, CustomTag::class);
+    }
 
     public function testRenderMissingDelimiter(): void
     {

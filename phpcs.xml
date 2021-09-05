@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset  name="Platine Database Standards">
+<ruleset  name="Platine Template Standards">
     <description>The Platine Template Coding Standards.</description>
     <file>src</file>
     <file>tests</file>
