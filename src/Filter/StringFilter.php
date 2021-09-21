@@ -292,7 +292,7 @@ class StringFilter extends AbstractFilter
             return $variable;
         }
 
-        return htmlentities($variable, ENT_QUOTES);
+        return htmlspecialchars($variable, ENT_QUOTES);
     }
 
     /**
