@@ -29,7 +29,7 @@ class DatetimeFilterTest extends PlatineTestCase
 
     public function testDateValueIsDateTime(): void
     {
-        $this->assertEquals('2021', DatetimeFilter::date(new DateTime('2021'), 'Y'));
+        $this->assertEquals('2021', DatetimeFilter::date(new DateTime('20210101'), 'Y'));
     }
 
     public function testDateValueIsNumeric(): void
