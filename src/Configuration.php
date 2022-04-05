@@ -57,7 +57,6 @@ use Platine\Stdlib\Config\AbstractConfiguration;
  */
 class Configuration extends AbstractConfiguration
 {
-
     /**
      * {@inheritdoc}
      */

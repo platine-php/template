@@ -57,7 +57,6 @@ use Platine\Template\Parser\AbstractFilter;
  */
 class HtmlFilter extends AbstractFilter
 {
-
     /**
      * Put all letter to lower case
      * @param mixed $variable

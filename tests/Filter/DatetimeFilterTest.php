@@ -16,7 +16,6 @@ use Platine\Template\Filter\DatetimeFilter;
  */
 class DatetimeFilterTest extends PlatineTestCase
 {
-
     public function testDateParamsIsNotStrings(): void
     {
         $this->assertEquals(23, DatetimeFilter::date(23, 22));

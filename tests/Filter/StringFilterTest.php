@@ -17,7 +17,6 @@ use Platine\Test\Fixture\StringFilterLengthTestClass;
  */
 class StringFilterTest extends PlatineTestCase
 {
-
     public function testLengthTraversable(): void
     {
         $arrayIt = new ArrayIterator([1, 4, 5]);

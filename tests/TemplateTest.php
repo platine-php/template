@@ -22,7 +22,6 @@ use stdClass;
  */
 class TemplateTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $cfg = new Configuration([
@@ -138,7 +137,7 @@ class TemplateTest extends PlatineTestCase
 
         $this->assertEquals($result, CustomTag::class);
     }
-    
+
     public function testRenderString(): void
     {
         $cfg = new Configuration([

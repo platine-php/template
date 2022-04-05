@@ -62,7 +62,6 @@ use Platine\Template\Parser\Token;
  */
 class IncrementTag extends AbstractTag
 {
-
      /**
      * Name of the variable to increment
      * @var string

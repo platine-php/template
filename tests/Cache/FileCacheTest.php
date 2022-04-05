@@ -18,7 +18,6 @@ use Platine\Template\Exception\NotFoundException;
  */
 class FileCacheTest extends PlatineTestCase
 {
-
     protected $vfsRoot;
     protected $vfsCachePath;
 

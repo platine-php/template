@@ -57,7 +57,6 @@ use Platine\Template\Exception\NotFoundException;
  */
 class StringLoader implements LoaderInterface
 {
-
     /**
      * The string hash data
      * @var array<string, string>

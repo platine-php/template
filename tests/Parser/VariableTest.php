@@ -18,7 +18,6 @@ use Platine\Template\Parser\Variable;
  */
 class VariableTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $parser = $this->getMockInstance(Parser::class, []);

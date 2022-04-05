@@ -58,7 +58,6 @@ use Platine\Template\Parser\Context;
  */
 class CommentTag extends AbstractBlock
 {
-
     /**
     * {@inheritdoc}
     */

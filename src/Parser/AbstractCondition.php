@@ -58,7 +58,6 @@ use Platine\Template\Exception\RenderException;
  */
 abstract class AbstractCondition extends AbstractBlock
 {
-
     /**
      * The current left variable to compare
      * @var mixed

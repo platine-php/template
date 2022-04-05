@@ -17,7 +17,6 @@ use Platine\Template\Tag\IfchangedTag;
  */
 class IfchangedTagTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $parser = $this->getMockInstance(Parser::class);

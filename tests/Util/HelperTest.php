@@ -15,7 +15,6 @@ use Platine\Template\Util\Helper;
  */
 class HelperTest extends PlatineTestCase
 {
-
     public function testNormalizePathAddLast(): void
     {
         $expected = '/foo' . DIRECTORY_SEPARATOR;

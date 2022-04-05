@@ -19,7 +19,6 @@ use Platine\Template\Template;
  */
 class ParserTest extends PlatineTestCase
 {
-
     public function testGetConfig(): void
     {
         $template = $this->getMockInstance(Template::class);

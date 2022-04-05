@@ -62,7 +62,6 @@ use Platine\Template\Parser\Token;
  */
 class IfTag extends AbstractCondition
 {
-
     /**
      * holding the nodes to render for each logical block
      * @var array<int, mixed>

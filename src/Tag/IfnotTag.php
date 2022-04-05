@@ -55,7 +55,6 @@ namespace Platine\Template\Tag;
  */
 class IfnotTag extends IfTag
 {
-
     /**
     * {@inheritdoc}
     */

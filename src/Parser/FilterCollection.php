@@ -64,7 +64,6 @@ use ReflectionMethod;
  */
 class FilterCollection
 {
-
     /**
      * The list of filter with their name and class
      * @var array<string, class-string>

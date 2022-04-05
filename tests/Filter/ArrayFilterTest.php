@@ -16,7 +16,6 @@ use Platine\Template\Filter\ArrayFilter;
  */
 class ArrayFilterTest extends PlatineTestCase
 {
-
     public function testFirst(): void
     {
         $expected = 34;

@@ -62,7 +62,6 @@ use Platine\Template\Parser\Token;
  */
 class DecrementTag extends AbstractTag
 {
-
     /**
      * Name of the variable to decrement
      * @var string

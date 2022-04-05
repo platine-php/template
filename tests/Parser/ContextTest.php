@@ -26,7 +26,6 @@ use stdClass;
  */
 class ContextTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $c = new Context([], []);

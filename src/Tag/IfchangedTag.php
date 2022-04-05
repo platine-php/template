@@ -59,7 +59,6 @@ use Platine\Template\Parser\Parser;
  */
 class IfchangedTag extends AbstractBlock
 {
-
     /**
      * The last value
      * @var string

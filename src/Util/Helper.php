@@ -55,7 +55,6 @@ namespace Platine\Template\Util;
  */
 class Helper
 {
-
     /**
      * Normalize path
      * @param string $path

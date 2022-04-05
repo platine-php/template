@@ -18,8 +18,6 @@ use Platine\Template\Template;
  */
 class DocumentTest extends PlatineTestCase
 {
-
-
     public function testConstructor(): void
     {
         $parser = $this->getMockInstance(Parser::class);

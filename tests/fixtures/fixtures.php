@@ -14,7 +14,6 @@ use stdClass;
 
 class CustomTag extends AbstractTag
 {
-
     protected string $name = 'tnh';
 
     public function render(Context $context): string
@@ -30,7 +29,6 @@ class CustomBlock extends AbstractBlock
 
 class ContextObjectToObject
 {
-
     public function toObject()
     {
         $o = new stdClass();
@@ -42,7 +40,6 @@ class ContextObjectToObject
 
 class IfTagObjectToString
 {
-
     public function __toString()
     {
         return __CLASS__;
@@ -51,12 +48,10 @@ class IfTagObjectToString
 
 class IfTagObjectWithoutToString
 {
-
 }
 
 class ContextObjectToArray
 {
-
     public function toArray()
     {
         return [
@@ -68,7 +63,6 @@ class ContextObjectToArray
 
 class ContextObjectToArrayNull
 {
-
     public function toArray()
     {
         return null;
@@ -77,7 +71,6 @@ class ContextObjectToArrayNull
 
 class ContextObjectToArrayInteger
 {
-
     public function toArray()
     {
         return 12;
@@ -86,7 +79,6 @@ class ContextObjectToArrayInteger
 
 class ContextDrop extends Drop
 {
-
     public function foo(): string
     {
         return get_class($this);
@@ -125,7 +117,6 @@ class ContextMethodCallGetMagicGet
 
 class DropTestClass extends Drop
 {
-
     public function myMethod(): string
     {
         return get_class($this);
@@ -134,7 +125,6 @@ class DropTestClass extends Drop
 
 class CustomFilter extends AbstractFilter
 {
-
     public static function char($param)
     {
         if (is_string($param)) {

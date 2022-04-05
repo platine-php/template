@@ -59,8 +59,6 @@ use Platine\Template\Parser\Token;
  */
 class RawTag extends AbstractBlock
 {
-
-
     /**
     * {@inheritdoc}
     */

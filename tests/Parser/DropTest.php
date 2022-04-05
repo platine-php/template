@@ -17,7 +17,6 @@ use Platine\Test\Fixture\DropTestClass;
  */
 class DropTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $d = new DropTestClass();

@@ -17,7 +17,6 @@ use stdClass;
  */
 class ConfigurationTest extends PlatineTestCase
 {
-
     public function testConstructor()
     {
         $cfg = new Configuration([]);

@@ -59,7 +59,6 @@ use Platine\Template\Template;
  */
 class Parser
 {
-
     /**
      * The template instance
      * @var Template
@@ -155,7 +154,7 @@ class Parser
                     ->getRoot()
                     ->render($context);
     }
-    
+
     /**
      * Render the template using string content
      * @param string $content the template name
@@ -166,7 +165,7 @@ class Parser
     {
         $tokens = $this->tokenize($content);
         $this->root = new Document($tokens, $this);
-        
+
         return $this->getRoot()
                     ->render($context);
     }

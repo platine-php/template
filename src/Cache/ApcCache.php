@@ -58,7 +58,6 @@ use Platine\Template\Exception\TemplateException;
  */
 class ApcCache extends AbstractCache
 {
-
     /**
      * Create new instance
      * @param Configuration|null $config

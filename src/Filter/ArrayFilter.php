@@ -59,7 +59,6 @@ use Traversable;
  */
 class ArrayFilter extends AbstractFilter
 {
-
     /**
      * Returns the first element of an array
      * @param array<mixed>|Iterator<mixed>|mixed $value

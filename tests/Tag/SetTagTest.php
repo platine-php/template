@@ -20,7 +20,6 @@ use Platine\Test\Fixture\CustomFilter;
  */
 class SetTagTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $parser = $this->getMockInstance(Parser::class);

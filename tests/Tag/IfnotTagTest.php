@@ -18,8 +18,6 @@ use Platine\Template\Tag\IfnotTag;
  */
 class IfnotTagTest extends PlatineTestCase
 {
-
-
     public function testRenderElse(): void
     {
         $parser = $this->getMockInstance(Parser::class);

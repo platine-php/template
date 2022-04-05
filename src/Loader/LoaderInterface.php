@@ -55,7 +55,6 @@ namespace Platine\Template\Loader;
  */
 interface LoaderInterface
 {
-
     /**
      * Return the template content to be use
      * for parse and rendering

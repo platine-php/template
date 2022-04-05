@@ -17,7 +17,6 @@ use Platine\Template\Tag\ContinueTag;
  */
 class ContinueTagTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $parser = $this->getMockInstance(Parser::class);

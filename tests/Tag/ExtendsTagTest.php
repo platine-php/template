@@ -22,7 +22,6 @@ use Platine\Template\Template;
  */
 class ExtendsTagTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $cache = $this->getMockInstance(NullCache::class, ['read' => false]);

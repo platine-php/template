@@ -15,7 +15,6 @@ use Platine\Template\Filter\HtmlFilter;
  */
 class HtmlFilterTest extends PlatineTestCase
 {
-
     public function testNl2brParamsIsNotString(): void
     {
         $this->assertEquals(23, HtmlFilter::nl2br(23));

@@ -55,5 +55,4 @@ namespace Platine\Template\Parser;
  */
 abstract class AbstractFilter
 {
-
 }

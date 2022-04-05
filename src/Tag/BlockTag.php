@@ -60,8 +60,6 @@ use Platine\Template\Parser\Parser;
  */
 class BlockTag extends AbstractBlock
 {
-
-
     /**
      * The name of the block
      * @var string

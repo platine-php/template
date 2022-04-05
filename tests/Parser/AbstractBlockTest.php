@@ -22,8 +22,6 @@ use stdClass;
  */
 class AbstractBlockTest extends PlatineTestCase
 {
-
-
     public function testDefault(): void
     {
         $parser = $this->getMockInstance(Parser::class);

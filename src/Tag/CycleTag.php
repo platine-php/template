@@ -62,7 +62,6 @@ use Platine\Template\Parser\Token;
  */
 class CycleTag extends AbstractTag
 {
-
     /**
      * The name of the cycle; if none is given one
      * is created using the value list

@@ -19,7 +19,6 @@ use Platine\Template\Loader\FileLoader;
  */
 class FileLoaderTest extends PlatineTestCase
 {
-
     protected $vfsRoot;
     protected $vfsTemplatePath;
 

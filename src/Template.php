@@ -63,7 +63,6 @@ use Platine\Template\Parser\AbstractTag;
  */
 class Template
 {
-
     /**
      * The configuration instance
      * @var Configuration
@@ -232,7 +231,7 @@ class Template
 
         return $this->parser->render($name, $context);
     }
-    
+
     /**
      * Render the template using the string
      * @param string $content the template content

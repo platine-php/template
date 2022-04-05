@@ -15,7 +15,6 @@ use Platine\Template\Parser\Lexer;
  */
 class LexerTest extends PlatineTestCase
 {
-
     public function testScan(): void
     {
         $l = new Lexer('/([a-z]+)/');

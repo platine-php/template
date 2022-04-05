@@ -57,7 +57,6 @@ use Platine\Template\Parser\AbstractFilter;
  */
 class NumberFilter extends AbstractFilter
 {
-
     /**
      * Addition
      * @param mixed $variable
@@ -135,7 +134,26 @@ class NumberFilter extends AbstractFilter
     }
 
     /**
-     * Modulo
+     * Division filter
+     * @param mixed $variable
+     * @param mixed $operand
+     * @return int|float|mixed
+     */
+    public static function div($variable, $operand)
+    {
+        if (!is_numeric($variable) || !is_numeric($operand) || $operand == 0) {
+            return $variable;
+        }
+
+        if (is_float($operand) || is_float($variable)) {
+            return (float) ($variable / $operand);
+        }
+
+        return (int) ($variable / $operand);
+    }
+
+    /**
+     * Round the number
      * @param mixed $variable
      * @param mixed $number
      * @return float|mixed
@@ -147,5 +165,29 @@ class NumberFilter extends AbstractFilter
         }
 
         return round((float) $variable, (int) $number);
+    }
+
+    /**
+     * Number format
+     * @param mixed $variable
+     * @param mixed $number
+     * @return float|mixed
+     */
+    public static function format(
+        $variable,
+        $decimal = 0,
+        $decimalPoint = '.',
+        $separator = ','
+    ) {
+        if (!is_numeric($variable)) {
+            return $variable;
+        }
+
+        return number_format(
+            (float) $variable,
+            $decimal,
+            $decimalPoint,
+            $separator
+        );
     }
 }

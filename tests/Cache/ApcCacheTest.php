@@ -17,7 +17,6 @@ use Platine\Template\Exception\TemplateException;
  */
 class ApcCacheTest extends PlatineTestCase
 {
-
     public function testConstructorExtensionIsNotLoaded(): void
     {
         global $mock_extension_loaded_to_false;

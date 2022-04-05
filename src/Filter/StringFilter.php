@@ -58,7 +58,6 @@ use Traversable;
  */
 class StringFilter extends AbstractFilter
 {
-
     /**
      * Return the length of string or array
      * @param mixed $variable

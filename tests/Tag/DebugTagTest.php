@@ -18,7 +18,6 @@ use Platine\Template\Tag\DebugTag;
  */
 class DebugTagTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $parser = $this->getMockInstance(Parser::class);

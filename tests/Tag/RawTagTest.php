@@ -17,9 +17,6 @@ use Platine\Template\Tag\RawTag;
  */
 class RawTagTest extends PlatineTestCase
 {
-
-
-
     public function testParse(): void
     {
         $parser = $this->getMockInstance(Parser::class);

@@ -17,7 +17,6 @@ use Platine\Template\Tag\CommentTag;
  */
 class CommentTagTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $parser = $this->getMockInstance(Parser::class);

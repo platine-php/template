@@ -64,7 +64,6 @@ use Platine\Template\Parser\Variable;
  */
 class CaseTag extends AbstractCondition
 {
-
     /**
      * Stack of node list
      * @var array<int, array<int, mixed>>

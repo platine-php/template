@@ -16,7 +16,6 @@ use Platine\Template\Configuration;
  */
 class NullCacheTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $cfg = new Configuration([

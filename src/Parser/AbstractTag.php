@@ -57,7 +57,6 @@ use ReflectionClass;
  */
 abstract class AbstractTag
 {
-
     /**
      * The name of this class tag
      * @var string

@@ -18,7 +18,6 @@ use Platine\Template\Tag\DecrementTag;
  */
 class DecrementTagTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $parser = $this->getMockInstance(Parser::class);

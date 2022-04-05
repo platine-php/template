@@ -23,7 +23,6 @@ use function Platine\Test\Fixture\func_return_generator;
  */
 class IfTagTest extends PlatineTestCase
 {
-
     public function testRenderEmpty(): void
     {
         $parser = $this->getMockInstance(Parser::class);

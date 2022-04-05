@@ -18,7 +18,6 @@ use Platine\Template\Tag\CaseTag;
  */
 class CaseTagTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $parser = $this->getMockInstance(Parser::class);

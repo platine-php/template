@@ -57,7 +57,6 @@ use Platine\Template\Configuration;
  */
 abstract class AbstractCache
 {
-
     /**
      * The cache expiration in second
      * @var int

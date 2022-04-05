@@ -62,7 +62,6 @@ use Platine\Template\Parser\Variable;
  */
 class SetTag extends AbstractTag
 {
-
     /**
      * The variable instance to assign
      * @var Variable

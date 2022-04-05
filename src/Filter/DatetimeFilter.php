@@ -58,7 +58,6 @@ use Platine\Template\Parser\AbstractFilter;
  */
 class DatetimeFilter extends AbstractFilter
 {
-
     /**
      * Formats a date
      * @param string|DateTimeInterface $variable

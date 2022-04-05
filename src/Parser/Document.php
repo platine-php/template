@@ -59,7 +59,6 @@ use Platine\Template\Tag\IncludeTag;
  */
 class Document extends AbstractBlock
 {
-
     /**
      * Create new instance
      * @param array<int, string> $tokens

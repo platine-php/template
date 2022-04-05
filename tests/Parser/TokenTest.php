@@ -15,7 +15,6 @@ use Platine\Template\Parser\Token;
  */
 class TokenTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $t = new Token();

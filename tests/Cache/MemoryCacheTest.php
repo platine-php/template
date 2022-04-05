@@ -16,7 +16,6 @@ use Platine\Template\Configuration;
  */
 class MemoryCacheTest extends PlatineTestCase
 {
-
     public function testRead(): void
     {
         $cfg = new Configuration([

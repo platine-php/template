@@ -59,7 +59,6 @@ use Platine\Template\Exception\RenderException;
  */
 class AbstractBlock extends AbstractTag
 {
-
     /**
      * The node list
      * @var AbstractTag[]|Variable[]|string[]

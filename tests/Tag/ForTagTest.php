@@ -21,7 +21,6 @@ use function Platine\Test\Fixture\func_return_generator;
  */
 class ForTagTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $parser = $this->getMockInstance(Parser::class);

@@ -61,7 +61,6 @@ use Platine\Template\Util\Helper;
  */
 class FileLoader implements LoaderInterface
 {
-
     /**
      * The configuration instance
      * @var Configuration

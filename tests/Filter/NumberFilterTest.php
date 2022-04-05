@@ -15,7 +15,6 @@ use Platine\Template\Filter\NumberFilter;
  */
 class NumberFilterTest extends PlatineTestCase
 {
-
     public function testPlusParamsIsNotNumeric(): void
     {
         $this->assertEquals('a', NumberFilter::plus('a', 34));
@@ -98,5 +97,29 @@ class NumberFilterTest extends PlatineTestCase
     {
         $this->assertEquals(1.1, NumberFilter::round(1.1, 1.1));
         $this->assertEquals(1.6, NumberFilter::round(1.55, 1));
+    }
+
+    public function testDivWrongParams(): void
+    {
+        $this->assertEquals('a', NumberFilter::div('a', 34));
+        $this->assertEquals(34, NumberFilter::div(34, 'b'));
+        $this->assertEquals('a', NumberFilter::div('a', 0));
+    }
+
+    public function testDivSuccess(): void
+    {
+        $this->assertEquals(2, NumberFilter::div('4', 2));
+        $this->assertEquals(1, NumberFilter::div(5, '5'));
+        $this->assertEquals(3.9, NumberFilter::div(19.5, 5));
+    }
+
+    public function testNumberFormat(): void
+    {
+        $this->assertEquals('4', NumberFilter::format('4'));
+        $this->assertEquals('4,000', NumberFilter::format('4000'));
+        $this->assertEquals('4,000.0000', NumberFilter::format('4000', 4));
+        $this->assertEquals('4,000-0000', NumberFilter::format('4000', 4, '-'));
+        $this->assertEquals('4 000-0000', NumberFilter::format('4000', 4, '-', ' '));
+        $this->assertEquals('4a000', NumberFilter::format('4a000'));
     }
 }

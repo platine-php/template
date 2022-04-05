@@ -18,7 +18,6 @@ use Platine\Template\Tag\CycleTag;
  */
 class CycleTagTest extends PlatineTestCase
 {
-
     public function testConstructorSimple(): void
     {
         $parser = $this->getMockInstance(Parser::class);

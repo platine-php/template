@@ -63,7 +63,6 @@ use Platine\Template\Parser\Token;
  */
 class IncludeTag extends AbstractTag
 {
-
     /**
      * The name of the template
      * @var string

@@ -18,7 +18,6 @@ use Platine\Template\Tag\CaptureTag;
  */
 class CaptureTagTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $parser = $this->getMockInstance(Parser::class);

@@ -16,7 +16,6 @@ use Platine\Template\Loader\StringLoader;
  */
 class StringLoaderTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $o = new StringLoader([]);

@@ -64,7 +64,6 @@ use Traversable;
  */
 class ForTag extends AbstractBlock
 {
-
     /**
      * Type digit
      */

@@ -16,7 +16,6 @@ use Platine\Test\Fixture\CustomFilter;
  */
 class FilterCollectionTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $fc = new FilterCollection();

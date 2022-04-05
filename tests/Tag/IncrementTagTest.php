@@ -18,7 +18,6 @@ use Platine\Template\Tag\IncrementTag;
  */
 class IncrementTagTest extends PlatineTestCase
 {
-
     public function testConstructor(): void
     {
         $parser = $this->getMockInstance(Parser::class);
