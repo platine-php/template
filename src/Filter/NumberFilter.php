@@ -185,7 +185,7 @@ class NumberFilter extends AbstractFilter
 
         return number_format(
             (float) $variable,
-            $decimal,
+            (int) $decimal,
             $decimalPoint,
             $separator
         );
