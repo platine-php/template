@@ -170,7 +170,9 @@ class NumberFilter extends AbstractFilter
     /**
      * Number format
      * @param mixed $variable
-     * @param mixed $number
+     * @param mixed $decimal
+     * @param string $decimalPoint
+     * @param string $separator
      * @return float|mixed
      */
     public static function format(
@@ -189,5 +191,33 @@ class NumberFilter extends AbstractFilter
             $decimalPoint,
             $separator
         );
+    }
+
+    /**
+     * Units format
+     * @param mixed $variable
+     * @param mixed $precision
+     * @return string
+     */
+    public static function sizeFormat(
+        $variable,
+        $precision = 2
+    ) {
+        if (!is_numeric($variable)) {
+            return $variable;
+        }
+
+        $size = (double) $variable;
+        if ($size > 0) {
+            $base = log($size) / log(1024);
+            $suffixes = ['B', 'K', 'M', 'G', 'T'];
+            $suffix = '';
+            if (isset($suffixes[floor($base)])) {
+                $suffix = $suffixes[floor($base)];
+            }
+            return round(pow(1024, $base - floor($base)), (int) $precision) . $suffix;
+        }
+
+        return $variable;
     }
 }
