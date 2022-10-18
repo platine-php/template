@@ -271,6 +271,21 @@ class StringFilter extends AbstractFilter
     }
 
     /**
+     * If the given value is part of the variable
+     * @param string|mixed $variable
+     * @param mixed $value
+     * @return int|false|mixed
+     */
+    public static function find($variable, $value)
+    {
+        if (!is_string($variable) || !is_string($value)) {
+            return $variable;
+        }
+
+        return strpos($variable, $value);
+    }
+
+    /**
      * Pseudo-filter: negates auto-added escape filter
      * @param mixed $variable
      * @return string|mixed

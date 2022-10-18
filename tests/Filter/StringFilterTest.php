@@ -176,6 +176,16 @@ class StringFilterTest extends PlatineTestCase
         $this->assertEquals(1, StringFilter::split(1, '1'));
     }
 
+    public function testFind(): void
+    {
+        $this->assertEquals(2, StringFilter::find('abc', 'c'));
+        $this->assertEquals(false, StringFilter::find('abc', 'd'));
+        $this->assertEquals(1, StringFilter::find('abc', 'b'));
+        $this->assertEquals(0, StringFilter::find('abc', 'a'));
+        $this->assertEquals(1, StringFilter::find('abc', 'bc'));
+        $this->assertEquals('abc', StringFilter::find('abc', 1));
+    }
+
     public function testRaw(): void
     {
         $this->assertEquals(1, StringFilter::raw(1));
