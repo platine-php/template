@@ -170,5 +170,9 @@ class ArrayFilterTest extends PlatineTestCase
         $this->assertEquals(1.4, ArrayFilter::json(1.4));
         $this->assertEquals('[1,2]', ArrayFilter::json([1, 2]));
         $this->assertEquals('{"a":1,"b":2}', ArrayFilter::json(['a' => 1, 'b' => 2]));
+        $this->assertEquals('{
+    "a": 1,
+    "b": 2
+}', ArrayFilter::json(['a' => 1, 'b' => 2], true));
     }
 }

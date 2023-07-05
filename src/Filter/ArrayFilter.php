@@ -207,10 +207,17 @@ class ArrayFilter extends AbstractFilter
     /**
      * Return the JSON representation
      * @param mixed $variable
+     * @param mixed $pretty whether use pretty print
      * @return string
      */
-    public static function json($variable)
+    public static function json($variable, $pretty = false)
     {
-        return Json::encode($variable);
+        $prettyPrint = boolval($pretty);
+        $options = 0;
+        if ($prettyPrint) {
+            $options = JSON_PRETTY_PRINT;
+        }
+
+        return Json::encode($variable, $options);
     }
 }
