@@ -50,6 +50,7 @@ declare(strict_types=1);
 namespace Platine\Template\Filter;
 
 use Iterator;
+use Platine\Stdlib\Helper\Json;
 use Platine\Template\Parser\AbstractFilter;
 use Traversable;
 
@@ -201,5 +202,15 @@ class ArrayFilter extends AbstractFilter
         }
 
         return array_reverse($variable);
+    }
+
+    /**
+     * Return the JSON representation
+     * @param mixed $variable
+     * @return string
+     */
+    public static function json($variable)
+    {
+        return Json::encode($variable);
     }
 }

@@ -162,4 +162,13 @@ class ArrayFilterTest extends PlatineTestCase
         $result = ArrayFilter::map($list, 2);
         $this->assertEquals($expected, $result);
     }
+
+    public function testJson(): void
+    {
+        $this->assertEquals(13, ArrayFilter::json(13));
+        $this->assertEquals(true, ArrayFilter::json(true));
+        $this->assertEquals(1.4, ArrayFilter::json(1.4));
+        $this->assertEquals('[1,2]', ArrayFilter::json([1, 2]));
+        $this->assertEquals('{"a":1,"b":2}', ArrayFilter::json(['a' => 1, 'b' => 2]));
+    }
 }
