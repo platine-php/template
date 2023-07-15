@@ -293,13 +293,16 @@ class AbstractBlock extends AbstractTag
      */
     protected function whitespaceHandler(string $token): void
     {
-        $previousToken = end($this->nodeList);
-        if (is_string($previousToken)) {
-            // this can also be a tag or a variable
-            $this->nodeList[key($this->nodeList)] = ltrim($previousToken);
+        $char = Token::WHITESPACE_CONTROL;
+        if (substr($token, 2, 1) === $char) {
+            $previousToken = end($this->nodeList);
+            if (is_string($previousToken)) {
+                // this can also be a tag or a variable
+                $this->nodeList[key($this->nodeList)] = ltrim($previousToken);
+            }
         }
 
-        $this->trimWhitespace = true;
+        $this->trimWhitespace = substr($token, -3, 1) === $char;
     }
 
     /**
