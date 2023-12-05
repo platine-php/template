@@ -78,7 +78,7 @@ class CaptureTag extends AbstractBlock
             parent::__construct($markup, $tokens, $parser);
         } else {
             throw new ParseException(sprintf(
-                'Syntax Error in "%s" - Valid syntax: capture [var] [value]',
+                'Syntax Error in "%s" - Valid syntax: capture [var]',
                 'capture'
             ));
         }
