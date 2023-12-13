@@ -255,7 +255,7 @@ class NumberFilter extends AbstractFilter
      * Units format
      * @param mixed $variable
      * @param mixed $precision
-     * @return string
+     * @return float|int|string
      */
     public static function sizeFormat(
         $variable,
