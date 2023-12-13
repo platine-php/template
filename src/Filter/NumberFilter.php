@@ -243,7 +243,7 @@ class NumberFilter extends AbstractFilter
             } else {
                 $arr = explode('.', $base);
             }
-            $separator = '%.' . (string)(strlen($arr[1]) + (abs($decimal) - 1)) . 'f';
+            $separator = '%.' . (string)(strlen($arr[1]) + (abs((int)$decimal) - 1)) . 'f';
 
             $value = sprintf($separator, $variable);
         }
