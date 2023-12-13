@@ -194,6 +194,64 @@ class NumberFilter extends AbstractFilter
     }
 
     /**
+     * Number format for money
+     * @param mixed $variable
+     * @param mixed $decimal
+     * @param string $decimalPoint
+     * @param string $separator
+     * @return float|mixed
+     */
+    public static function formatMoney(
+        $variable,
+        $decimal = 0,
+        $decimalPoint = '.',
+        $separator = ','
+    ) {
+        if (!is_numeric($variable)) {
+            return $variable;
+        }
+
+        $number = (string) $variable;
+        if (strpos($number, '.') === false && strpos($number, ',') === false) {
+            $decimal = 0;
+        }
+
+        return number_format(
+            (float) $variable,
+            (int) $decimal,
+            $decimalPoint,
+            $separator
+        );
+    }
+
+    /**
+     * Return the given number to string
+     * @param mixed $variable
+     * @return string|mixed
+     */
+    public static function numberToString($variable)
+    {
+        $value = (string) $variable;
+        if (stripos($value, 'e') !== false) {
+            // PHP use scientific notation if decimal has 4 zeros
+            // after dot. so use number format instead of
+            list($base, $decimal) = explode('E', $value);
+
+            // Some system use "," instead of "."
+            if (strpos($value, ',') !== false) {
+                $arr = explode(',', $base);
+            } else {
+                $arr = explode('.', $base);
+            }
+            $separator = '%.' . (string)(strlen($arr[1]) + (abs($decimal) - 1)) . 'f';
+
+            $value = sprintf($separator, $variable);
+        }
+
+        return str_replace(',', '.', $value);
+    }
+
+    /**
      * Units format
      * @param mixed $variable
      * @param mixed $precision

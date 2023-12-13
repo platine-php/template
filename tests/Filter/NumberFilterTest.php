@@ -123,6 +123,30 @@ class NumberFilterTest extends PlatineTestCase
         $this->assertEquals('4a000', NumberFilter::format('4a000'));
     }
 
+    public function testFormatMoney(): void
+    {
+        $this->assertEquals('4', NumberFilter::formatMoney('4'));
+        $this->assertEquals('4,000', NumberFilter::formatMoney('4000'));
+        $this->assertEquals('4,000', NumberFilter::formatMoney('4000', 4));
+        $this->assertEquals('4,000', NumberFilter::formatMoney('4000', 4, '-'));
+        $this->assertEquals('4 000', NumberFilter::formatMoney('4000', 4, '-', ' '));
+        $this->assertEquals('4a000', NumberFilter::formatMoney('4a000'));
+    }
+
+    public function testNumberToString(): void
+    {
+        $this->assertEquals('4', NumberFilter::numberToString('4'));
+        $this->assertEquals('4', NumberFilter::numberToString(4));
+        $this->assertEquals('4000', NumberFilter::numberToString('4000'));
+        $this->assertEquals('12.89', NumberFilter::numberToString('12,89'));
+        $this->assertEquals('4a000', NumberFilter::numberToString('4a000'));
+        $this->assertEquals('0.00004', NumberFilter::numberToString(4.3E-5));
+        $this->assertEquals('0.00004', NumberFilter::numberToString('4.3E-5'));
+        $this->assertEquals('4.00000', NumberFilter::numberToString('4,3E-5'));
+        $this->assertEquals('0.00004', NumberFilter::numberToString('0,00004'));
+        $this->assertEquals('45.004', NumberFilter::numberToString('45,004'));
+    }
+
     public function testSizeFormat(): void
     {
         $this->assertEquals('4B', NumberFilter::sizeFormat('4'));
