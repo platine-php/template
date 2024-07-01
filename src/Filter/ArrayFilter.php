@@ -32,7 +32,7 @@
  */
 
 /**
- *  @file NumberFilter.php
+ *  @file ArrayFilter.php
  *
  *  The Array Filter class
  *
