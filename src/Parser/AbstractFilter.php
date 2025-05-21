@@ -50,7 +50,7 @@ declare(strict_types=1);
 namespace Platine\Template\Parser;
 
 /**
- * Class AbstractFilter
+ * @class AbstractFilter
  * @package Platine\Template\Parser
  */
 abstract class AbstractFilter

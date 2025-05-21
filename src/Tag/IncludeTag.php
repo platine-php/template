@@ -58,7 +58,7 @@ use Platine\Template\Parser\Parser;
 use Platine\Template\Parser\Token;
 
 /**
- * Class IncludeTag
+ * @class IncludeTag
  * @package Platine\Template\Tag
  */
 class IncludeTag extends AbstractTag
@@ -92,7 +92,7 @@ class IncludeTag extends AbstractTag
      * template as the template name
      * @var mixed
      */
-    protected $variable;
+    protected mixed $variable;
 
     /**
     * {@inheritdoc}

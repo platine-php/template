@@ -59,7 +59,7 @@ use ReflectionClass;
 use ReflectionMethod;
 
 /**
- * Class FilterCollection
+ * @class FilterCollection
  * @package Platine\Template\Parser
  */
 class FilterCollection
@@ -114,7 +114,7 @@ class FilterCollection
      * @param array<int, mixed> $args
      * @return mixed
      */
-    public function invoke(string $name, $value, array $args = [])
+    public function invoke(string $name, mixed $value, array $args = []): mixed
     {
         // workaround for a single standard filter being a reserved
         // keyword - we can't use overloading for static calls

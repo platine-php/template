@@ -36,7 +36,7 @@ declare(strict_types=1);
 namespace Platine\Template\Exception;
 
 /**
- * Class ParseException
+ * @class ParseException
  * @package Platine\Template\Exception
  */
 class ParseException extends TemplateException

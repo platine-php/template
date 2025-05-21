@@ -49,19 +49,21 @@ declare(strict_types=1);
 
 namespace Platine\Template\Parser;
 
+use Stringable;
+
 /**
- * Class Drop
+ * @class Drop
  * @package Platine\Template\Parser
  *
  */
  /**
- * A drop is a class which allows you to to export DOM like things to template.
+ * A drop is a class which allows you to export DOM like things to template.
  * Methods of drops are callable.
  * The main use for drops is the implement lazy loaded objects.
  * If you would like to make data available to the web designers which you don't
  * want loaded unless needed then a drop is a great way to do that.
  */
-abstract class Drop
+abstract class Drop implements Stringable
 {
     /**
      * The context instance to use
@@ -96,7 +98,7 @@ abstract class Drop
      * @param string $method
      * @return mixed
      */
-    public function invokeDrop(string $method)
+    public function invokeDrop(string $method): mixed
     {
         $result = $this->beforeMethod($method);
         if ($result === null && is_callable([$this, $method])) {
@@ -129,7 +131,7 @@ abstract class Drop
      * @param string $method
      * @return mixed
      */
-    protected function beforeMethod(string $method)
+    protected function beforeMethod(string $method): mixed
     {
         return null;
     }

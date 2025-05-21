@@ -52,7 +52,7 @@ namespace Platine\Template\Parser;
 use ReflectionClass;
 
 /**
- * Class AbstractTag
+ * @class AbstractTag
  * @package Platine\Template\Parser
  */
 abstract class AbstractTag

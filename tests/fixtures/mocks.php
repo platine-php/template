@@ -202,7 +202,7 @@ function touch(string $filename, int $time): bool
     }
 }
 
-function unlink(string $filename, resource $context = null): bool
+function unlink(string $filename, $context = null): bool
 {
     global $mock_unlink_to_false, $mock_unlink_to_true;
     if ($mock_unlink_to_false) {

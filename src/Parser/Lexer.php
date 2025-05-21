@@ -49,11 +49,13 @@ declare(strict_types=1);
 
 namespace Platine\Template\Parser;
 
+use Stringable;
+
 /**
- * Class Lexer
+ * @class Lexer
  * @package Platine\Template\Parser
  */
-class Lexer
+class Lexer implements Stringable
 {
     /**
      * The lexer pattern
@@ -148,9 +150,9 @@ class Lexer
     /**
      * Return result of matches
      * @param int $index
-     * @return array<int, mixed>
+     * @return mixed
      */
-    public function getArrayMatch(int $index = -1)
+    public function getArrayMatch(int $index = -1): mixed
     {
         if ($index === -1) {
             return $this->matches;
@@ -182,7 +184,7 @@ class Lexer
      * @param int $index
      * @return mixed
      */
-    public function getMixedMatch(int $index)
+    public function getMixedMatch(int $index): mixed
     {
         if (array_key_exists($index, $this->matches)) {
             return $this->matches[$index];

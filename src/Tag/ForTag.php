@@ -59,7 +59,7 @@ use Platine\Template\Parser\Token;
 use Traversable;
 
 /**
- * Class ForTag
+ * @class ForTag
  * @package Platine\Template\Tag
  */
 class ForTag extends AbstractBlock
@@ -103,7 +103,7 @@ class ForTag extends AbstractBlock
      * The loop start value
      * @var int|string
      */
-    protected $start;
+    protected int|string $start;
 
     /**
     * {@inheritdoc}
@@ -165,7 +165,6 @@ class ForTag extends AbstractBlock
      */
     protected function renderDigit(Context $context): string
     {
-        /** @var int $start */
         $start = $this->start;
 
         if (!is_int($start)) {

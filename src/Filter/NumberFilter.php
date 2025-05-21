@@ -52,96 +52,80 @@ namespace Platine\Template\Filter;
 use Platine\Template\Parser\AbstractFilter;
 
 /**
- * Class NumberFilter
+ * @class NumberFilter
  * @package Platine\Template\Filter
  */
 class NumberFilter extends AbstractFilter
 {
     /**
      * Addition
-     * @param mixed $variable
-     * @param mixed $operand
-     * @return float|int|mixed
+     * @param float|int $variable
+     * @param float|int $operand
+     * @return float|int
      */
-    public static function plus($variable, $operand)
+    public static function plus(float|int $variable, float|int $operand): float|int
     {
-        if (!is_numeric($variable) || !is_numeric($operand)) {
-            return $variable;
-        }
-
         if (is_float($operand) || is_float($variable)) {
             return (float) $variable + (float) $operand;
         }
 
-        return (int) $variable + (int) $operand;
+        return $variable + $operand;
     }
 
     /**
      * subtraction
-     * @param mixed $variable
-     * @param mixed $operand
-     * @return int|float|mixed
+     * @param float|int $variable
+     * @param float|int $operand
+     * @return float|int
      */
-    public static function minus($variable, $operand)
+    public static function minus(float|int $variable, float|int $operand): float|int
     {
-        if (!is_numeric($variable) || !is_numeric($operand)) {
-            return $variable;
-        }
-
         if (is_float($operand) || is_float($variable)) {
             return (float) $variable - (float) $operand;
         }
 
-        return (int) $variable - (int) $operand;
+        return $variable - $operand;
     }
 
     /**
      * Times
-     * @param mixed $variable
-     * @param mixed $operand
-     * @return int|float|mixed
+     * @param float|int $variable
+     * @param float|int $operand
+     * @return float|int
      */
-    public static function times($variable, $operand)
+    public static function times(float|int $variable, float|int $operand): float|int
     {
-        if (!is_numeric($variable) || !is_numeric($operand)) {
-            return $variable;
-        }
-
         if (is_float($operand) || is_float($variable)) {
             return (float) $variable * (float) $operand;
         }
 
-        return (int) $variable * (int) $operand;
+        return $variable * $operand;
     }
 
     /**
      * Modulo
-     * @param mixed $variable
-     * @param mixed $operand
-     * @return int|float|mixed
+     * @param float|int $variable
+     * @param float|int $operand
+     * @return int|float
      */
-    public static function modulo($variable, $operand)
+    public static function modulo(float|int $variable, float|int $operand): float|int
     {
-        if (!is_numeric($variable) || !is_numeric($operand)) {
-            return $variable;
-        }
-
         if (is_float($operand) || is_float($variable)) {
             return fmod((float) $variable, (float) $operand);
         }
 
-        return fmod((int) $variable, (int) $operand);
+        return fmod($variable, $operand);
     }
 
     /**
      * Division filter
-     * @param mixed $variable
-     * @param mixed $operand
-     * @return int|float|mixed
+     * @param float|int $variable
+     * @param float|int $operand
+     * @return int|float
      */
-    public static function div($variable, $operand)
+    public static function div(float|int $variable, float|int $operand): float|int
     {
-        if (!is_numeric($variable) || !is_numeric($operand) || $operand == 0) {
+        if ($operand == 0) {// don't use ===
             return $variable;
         }
 
@@ -149,38 +133,34 @@ class NumberFilter extends AbstractFilter
             return (float) ($variable / $operand);
         }
 
-        return (int) ($variable / $operand);
+        return ($variable / $operand);
     }
 
     /**
      * Round the number
-     * @param mixed $variable
-     * @param mixed $number
-     * @return float|mixed
+     * @param float|int $variable
+     * @param int $number
+     * @return float
      */
-    public static function round($variable, $number = 0)
+    public static function round(float|int $variable, int $number = 0): float
     {
-        if (!is_numeric($variable) || !is_numeric($number)) {
-            return $variable;
-        }
-
         return round((float) $variable, (int) $number);
     }
 
     /**
      * Number format
-     * @param mixed $variable
-     * @param mixed $decimal
+     * @param float|int|string $variable
+     * @param int|string $decimal
      * @param string $decimalPoint
      * @param string $separator
-     * @return float|mixed
+     * @return string
      */
     public static function format(
-        $variable,
-        $decimal = 0,
-        $decimalPoint = '.',
-        $separator = ','
-    ) {
+        float|int|string $variable,
+        int|string $decimal = 0,
+        string $decimalPoint = '.',
+        string $separator = ','
+    ): string {
         if (!is_numeric($variable)) {
             return $variable;
         }
@@ -195,18 +175,18 @@ class NumberFilter extends AbstractFilter
 
     /**
      * Number format for money
-     * @param mixed $variable
-     * @param mixed $decimal
+     * @param float|int|string $variable
+     * @param string|int $decimal
      * @param string $decimalPoint
      * @param string $separator
-     * @return float|mixed
+     * @return string
      */
     public static function formatMoney(
-        $variable,
-        $decimal = 0,
-        $decimalPoint = '.',
-        $separator = ','
-    ) {
+        float|int|string $variable,
+        int|string $decimal = 0,
+        string $decimalPoint = '.',
+        string $separator = ','
+    ): string {
         if (!is_numeric($variable)) {
             return $variable;
         }
@@ -226,10 +206,10 @@ class NumberFilter extends AbstractFilter
 
     /**
      * Return the given number to string
-     * @param mixed $variable
-     * @return string|mixed
+     * @param float|int|string $variable
+     * @return string
      */
-    public static function numberToString($variable)
+    public static function numberToString(float|int|string $variable): string
     {
         $value = (string) $variable;
         if (stripos($value, 'e') !== false) {
@@ -253,14 +233,14 @@ class NumberFilter extends AbstractFilter
 
     /**
      * Units format
-     * @param mixed $variable
-     * @param mixed $precision
+     * @param float|int|string $variable
+     * @param int|string $precision
      * @return float|int|string
      */
     public static function sizeFormat(
-        $variable,
-        $precision = 2
-    ) {
+        float|int|string $variable,
+        int|string $precision = 2
+    ): float|int|string {
         if (!is_numeric($variable)) {
             return $variable;
         }

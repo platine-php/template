@@ -57,7 +57,7 @@ use Platine\Template\Parser\Parser;
 use Platine\Template\Parser\Token;
 
 /**
- * Class DecrementTag
+ * @class DecrementTag
  * @package Platine\Template\Tag
  */
 class DecrementTag extends AbstractTag
@@ -91,11 +91,11 @@ class DecrementTag extends AbstractTag
     {
         // if the value is not set in the environment check to see if it
         // exists in the context, and if not set it to 0
-        if (!$context->hasEnvironment($this->name)) {
+        if ($context->hasEnvironment($this->name) === false) {
             // check for a context value
             $fromContext = $context->get($this->name);
 
-            $context->setEnvironment($this->name, $fromContext !== null ? $fromContext : 0);
+            $context->setEnvironment($this->name, $fromContext ?? 0);
         }
         // decrement the environment value
         $currentValue = $context->getEnvironment($this->name);

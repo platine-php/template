@@ -53,7 +53,7 @@ use Platine\Template\Configuration;
 use Platine\Template\Exception\TemplateException;
 
 /**
- * Class ApcCache
+ * @class ApcCache
  * @package Platine\Template\Cache
  */
 class ApcCache extends AbstractCache
@@ -75,7 +75,7 @@ class ApcCache extends AbstractCache
     /**
     * {@inheritdoc}
     */
-    public function read(string $key, bool $unserialize = true)
+    public function read(string $key, bool $unserialize = true): mixed
     {
         $success = false;
         $data = apcu_fetch($this->prefix . $key, $success);
@@ -94,7 +94,7 @@ class ApcCache extends AbstractCache
     /**
     * {@inheritdoc}
     */
-    public function write(string $key, $value, bool $serialize = true): bool
+    public function write(string $key, mixed $value, bool $serialize = true): bool
     {
         return apcu_store($this->prefix . $key, $value, $this->expire);
     }

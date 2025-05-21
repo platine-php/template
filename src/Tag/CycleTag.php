@@ -57,7 +57,7 @@ use Platine\Template\Parser\Parser;
 use Platine\Template\Parser\Token;
 
 /**
- * Class CycleTag
+ * @class CycleTag
  * @package Platine\Template\Tag
  */
 class CycleTag extends AbstractTag

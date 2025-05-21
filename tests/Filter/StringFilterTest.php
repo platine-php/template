@@ -78,14 +78,12 @@ class StringFilterTest extends PlatineTestCase
     {
         $result = StringFilter::remove('foo', 'o');
         $this->assertEquals('f', $result);
-        $this->assertEquals(3, StringFilter::remove(3, 'foo'));
     }
 
     public function testReplace(): void
     {
         $result = StringFilter::replace('foo', 'o', 'a');
         $this->assertEquals('faa', $result);
-        $this->assertEquals(3, StringFilter::replace(3, 'foo', 'bar'));
     }
 
     public function testTruncate(): void
@@ -93,15 +91,16 @@ class StringFilterTest extends PlatineTestCase
         $result = StringFilter::truncate('foo', 2, '...');
         $this->assertEquals('fo...', $result);
         $this->assertEquals('foo', StringFilter::truncate('foo', 3, 'bar'));
-        $this->assertEquals(3, StringFilter::truncate(3, 'foo', 'bar'));
     }
 
     public function testTruncateWord(): void
     {
+        $result1 = StringFilter::truncateWord('foo bar baz', 'a2', '...');
+        $this->assertEquals('foo bar baz', $result1);
+
         $result = StringFilter::truncateWord('foo bar baz', 2, '...');
         $this->assertEquals('foo bar...', $result);
         $this->assertEquals('foo', StringFilter::truncateWord('foo', 3, 'bar'));
-        $this->assertEquals(3, StringFilter::truncateWord(3, 'foo', 'bar'));
     }
 
     public function testUpperMultibyte(): void
@@ -123,7 +122,6 @@ class StringFilterTest extends PlatineTestCase
 
         $result = StringFilter::upper('foo');
         $this->assertEquals('FOO', $result);
-        $this->assertEquals(123, StringFilter::upper(123));
     }
 
     public function testLowerMultibyte(): void
@@ -145,21 +143,18 @@ class StringFilterTest extends PlatineTestCase
 
         $result = StringFilter::lower('FOO');
         $this->assertEquals('foo', $result);
-        $this->assertEquals(123, StringFilter::lower(123));
     }
 
     public function testUrlEncode(): void
     {
         $result = StringFilter::urlEncode('foo@bar.com');
         $this->assertEquals('foo%40bar.com', $result);
-        $this->assertEquals(123, StringFilter::urlEncode(123));
     }
 
     public function testUrlDecode(): void
     {
         $result = StringFilter::urlDecode('foo%40bar.com');
         $this->assertEquals('foo@bar.com', $result);
-        $this->assertEquals(123, StringFilter::urlDecode(123));
     }
 
     public function testStringfy(): void
@@ -173,7 +168,7 @@ class StringFilterTest extends PlatineTestCase
     {
         $result = StringFilter::split('1,2', ',');
         $this->assertEquals([1, 2], $result);
-        $this->assertEquals(1, StringFilter::split(1, '1'));
+        $this->assertEquals([1], StringFilter::split('1', ''));
     }
 
     public function testFind(): void
@@ -183,7 +178,6 @@ class StringFilterTest extends PlatineTestCase
         $this->assertEquals(1, StringFilter::find('abc', 'b'));
         $this->assertEquals(0, StringFilter::find('abc', 'a'));
         $this->assertEquals(1, StringFilter::find('abc', 'bc'));
-        $this->assertEquals('abc', StringFilter::find('abc', 1));
     }
 
     public function testRaw(): void
@@ -195,14 +189,12 @@ class StringFilterTest extends PlatineTestCase
     {
         $result = StringFilter::escape('1<b>');
         $this->assertEquals('1&lt;b&gt;', $result);
-        $this->assertEquals(1, StringFilter::escape(1));
     }
 
     public function testEscapeOnce(): void
     {
         $result = StringFilter::escapeOnce('1<b>');
         $this->assertEquals('1&lt;b&gt;', $result);
-        $this->assertEquals(1, StringFilter::escapeOnce(1));
     }
 
     public function testDefaultValue(): void
@@ -217,14 +209,13 @@ class StringFilterTest extends PlatineTestCase
     {
         $result = StringFilter::join([1, 2, 3], '|');
         $this->assertEquals('1|2|3', $result);
-        $this->assertEquals('foo', StringFilter::join('foo', 1));
+        $this->assertEquals('foo', StringFilter::join(['foo'], ''));
         $this->assertEquals('4,5', StringFilter::join(new ArrayIterator([4, 5]), ','));
-        $this->assertEquals(25, StringFilter::join(25, ','));
+        $this->assertEquals(25, StringFilter::join([25], ','));
     }
 
     public function testCapitalize(): void
     {
-        $this->assertEquals(1, StringFilter::capitalize(1));
         $this->assertEquals('Foo Bar', StringFilter::capitalize('foo bar'));
         $this->assertEquals('Foo', StringFilter::capitalize('foo'));
         $this->assertEquals('1Foo', StringFilter::capitalize('1foo'));
@@ -233,21 +224,18 @@ class StringFilterTest extends PlatineTestCase
 
     public function testLstrip(): void
     {
-        $this->assertEquals(1, StringFilter::lstrip(1));
         $this->assertEquals('foo', StringFilter::lstrip(' foo'));
         $this->assertEquals('foo ', StringFilter::lstrip('foo '));
     }
 
     public function testRstrip(): void
     {
-        $this->assertEquals(1, StringFilter::rstrip(1));
         $this->assertEquals('foo', StringFilter::rstrip('foo '));
         $this->assertEquals(' foo', StringFilter::rstrip(' foo'));
     }
 
     public function testStrip(): void
     {
-        $this->assertEquals(1, StringFilter::strip(1));
         $this->assertEquals('foo', StringFilter::strip(' foo '));
         $this->assertEquals('foo', StringFilter::strip(' foo'));
         $this->assertEquals('foo', StringFilter::strip('foo '));
@@ -255,13 +243,11 @@ class StringFilterTest extends PlatineTestCase
 
     public function testStripHtml(): void
     {
-        $this->assertEquals(1, StringFilter::stripHtml(1));
         $this->assertEquals('foo', StringFilter::stripHtml('<b>foo</b>'));
     }
 
     public function testStripNewLine(): void
     {
-        $this->assertEquals(1, StringFilter::stripNewLine(1));
         $this->assertEquals('foobarbaz', StringFilter::stripNewLine("foo\nbar\rbaz"));
         $this->assertEquals('foobarbaz', StringFilter::stripNewLine("foo\nbar\rbaz"));
     }

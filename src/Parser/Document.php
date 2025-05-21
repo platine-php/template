@@ -54,7 +54,7 @@ use Platine\Template\Tag\ExtendsTag;
 use Platine\Template\Tag\IncludeTag;
 
 /**
- * Class Document
+ * @class Document
  * @package Platine\Template\Parser
  */
 class Document extends AbstractBlock
@@ -67,7 +67,6 @@ class Document extends AbstractBlock
     public function __construct(array &$tokens, Parser $parser)
     {
         $this->parser = $parser;
-
         $this->parse($tokens);
     }
 

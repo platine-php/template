@@ -53,7 +53,7 @@ use Generator;
 use Platine\Template\Exception\RenderException;
 
 /**
- * Class AbstractCondition
+ * @class AbstractCondition
  * @package Platine\Template\Parser
  */
 abstract class AbstractCondition extends AbstractBlock
@@ -62,20 +62,20 @@ abstract class AbstractCondition extends AbstractBlock
      * The current left variable to compare
      * @var mixed
      */
-    protected $left = null;
+    protected mixed $left = null;
 
     /**
      * The current right variable to compare
      * @var mixed
      */
-    protected $right = null;
+    protected mixed $right = null;
 
     /**
      * Returns a string value of an array or object for comparisons
-     * @param mixed|null $value
-     * @return string|mixed|null
+     * @param mixed $value
+     * @return mixed
      */
-    protected function stringValue($value)
+    protected function stringValue(mixed $value): mixed
     {
         if (is_object($value)) {
             if (method_exists($value, '__toString')) {
@@ -134,8 +134,8 @@ abstract class AbstractCondition extends AbstractBlock
      * @return bool
      */
     protected function evaluateCondition(
-        $left,
-        $right,
+        mixed $left,
+        mixed $right,
         ?string $operator,
         Context $context
     ): bool {

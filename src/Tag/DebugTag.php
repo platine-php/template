@@ -57,7 +57,7 @@ use Platine\Template\Parser\Parser;
 use Platine\Template\Parser\Token;
 
 /**
- * Class DebugTag
+ * @class DebugTag
  * @package Platine\Template\Tag
  */
 class DebugTag extends AbstractTag

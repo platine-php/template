@@ -54,7 +54,7 @@ use Platine\Template\Exception\ParseException;
 use Platine\Template\Exception\RenderException;
 
 /**
- * Class AbstractBlock
+ * @class AbstractBlock
  * @package Platine\Template\Parser
  */
 class AbstractBlock extends AbstractTag

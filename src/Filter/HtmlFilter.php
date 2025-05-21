@@ -52,7 +52,7 @@ namespace Platine\Template\Filter;
 use Platine\Template\Parser\AbstractFilter;
 
 /**
- * Class HtmlFilter
+ * @class HtmlFilter
  * @package Platine\Template\Filter
  */
 class HtmlFilter extends AbstractFilter
@@ -62,7 +62,7 @@ class HtmlFilter extends AbstractFilter
      * @param mixed $variable
      * @return string|mixed
      */
-    public static function nl2br($variable)
+    public static function nl2br(mixed $variable): mixed
     {
         if (!is_string($variable)) {
             return $variable;

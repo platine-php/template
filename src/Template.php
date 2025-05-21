@@ -58,7 +58,7 @@ use Platine\Template\Parser\Parser;
 use Platine\Template\Parser\AbstractTag;
 
 /**
- * Class Template
+ * @class Template
  * @package Platine\Template
  */
 class Template
@@ -179,7 +179,7 @@ class Template
      * @param string|AbstractTag $class
      * @return $this
      */
-    public function addTag(string $name, $class): self
+    public function addTag(string $name, string|AbstractTag $class): self
     {
         $this->tags[$name] = $class;
 

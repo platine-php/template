@@ -56,7 +56,7 @@ use Platine\Template\Parser\Lexer;
 use Platine\Template\Util\Helper;
 
 /**
- * Class FileLoader
+ * @class FileLoader
  * @package Platine\Template\Loader
  */
 class FileLoader implements LoaderInterface
@@ -87,7 +87,7 @@ class FileLoader implements LoaderInterface
 
         if ($realPath === false || !is_writable($realPath)) {
             throw new NotFoundException(sprintf(
-                'The template directory [%s] does not exist or writable',
+                'The template directory [%s] does not exist or is not writable',
                 $path
             ));
         }
@@ -106,12 +106,19 @@ class FileLoader implements LoaderInterface
     }
 
 
+    /**
+     *
+     * @param string $file
+     * @return string
+     * @throws ParseException
+     * @throws NotFoundException
+     */
     protected function getFilePath(string $file): string
     {
         $pattern = '/^[^.\/][a-zA-Z0-9_\/-]+$/';
 
         $lexer = new Lexer($pattern);
-        if (!$lexer->match($file)) {
+        if ($lexer->match($file) === false) {
             throw new ParseException(sprintf(
                 'Invalid template filename [%s]',
                 $file
@@ -125,7 +132,7 @@ class FileLoader implements LoaderInterface
 
         $realPath = $this->path . $file;
 
-        if (!is_file($realPath)) {
+        if (is_file($realPath) === false) {
             throw new NotFoundException(sprintf(
                 'Template file [%s] does not exist',
                 $realPath

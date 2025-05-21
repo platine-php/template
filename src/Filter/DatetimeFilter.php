@@ -53,23 +53,19 @@ use DateTimeInterface;
 use Platine\Template\Parser\AbstractFilter;
 
 /**
- * Class DatetimeFilter
+ * @class DatetimeFilter
  * @package Platine\Template\Filter
  */
 class DatetimeFilter extends AbstractFilter
 {
     /**
      * Formats a date
-     * @param string|DateTimeInterface $variable
-     * @param mixed $format
+     * @param string|DateTimeInterface|int $variable
+     * @param string $format
      * @return string|mixed
      */
-    public static function date($variable, $format)
+    public static function date(string|DateTimeInterface|int $variable, string $format): mixed
     {
-        if (!is_string($variable) && !$variable instanceof DateTimeInterface) {
-            return $variable;
-        }
-
         if ($variable instanceof DateTimeInterface) {
             return $variable->format($format);
         }

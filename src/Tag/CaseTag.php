@@ -59,7 +59,7 @@ use Platine\Template\Parser\Token;
 use Platine\Template\Parser\Variable;
 
 /**
- * Class CaseTag
+ * @class CaseTag
  * @package Platine\Template\Tag
  */
 class CaseTag extends AbstractCondition
@@ -78,15 +78,15 @@ class CaseTag extends AbstractCondition
 
     /**
      * Left value to compare
-     * @var mixed|null
+     * @var mixed
      */
-    protected $left = null;
+    protected mixed $left = null;
 
     /**
      * Right value to compare
-     * @var mixed|null
+     * @var mixed
      */
-    protected $right = null;
+    protected mixed $right = null;
 
     /**
     * {@inheritdoc}

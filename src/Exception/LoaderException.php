@@ -35,10 +35,8 @@ declare(strict_types=1);
 
 namespace Platine\Template\Exception;
 
-use Exception;
-
 /**
- * Class LoaderException
+ * @class LoaderException
  * @package Platine\Template\Exception
  */
 class LoaderException extends TemplateException

@@ -53,7 +53,7 @@ use Platine\Template\Parser\AbstractFilter;
 use Traversable;
 
 /**
- * Class StringFilter
+ * @class StringFilter
  * @package Platine\Template\Filter
  */
 class StringFilter extends AbstractFilter
@@ -61,9 +61,9 @@ class StringFilter extends AbstractFilter
     /**
      * Return the length of string or array
      * @param mixed $variable
-     * @return int|mixed
+     * @return mixed
      */
-    public static function length($variable)
+    public static function length(mixed $variable): mixed
     {
         if ($variable instanceof Traversable) {
             return iterator_count($variable);
@@ -94,9 +94,9 @@ class StringFilter extends AbstractFilter
      * Add one string to another
      * @param mixed $variable
      * @param mixed $value
-     * @return string|mixed
+     * @return mixed
      */
-    public static function append($variable, $value)
+    public static function append(mixed $variable, mixed $value): mixed
     {
         if (!is_string($variable) || !is_string($value)) {
             return $variable;
@@ -109,9 +109,9 @@ class StringFilter extends AbstractFilter
      * Prefix a string to variable
      * @param mixed $variable
      * @param mixed $value
-     * @return string|mixed
+     * @return mixed
      */
-    public static function prepend($variable, $value)
+    public static function prepend(mixed $variable, mixed $value): mixed
     {
         if (!is_string($variable) || !is_string($value)) {
             return $variable;
@@ -122,48 +122,42 @@ class StringFilter extends AbstractFilter
 
     /**
      * Remove a string to variable
-     * @param mixed $variable
-     * @param mixed $value
-     * @return string|mixed
+     * @param string $variable
+     * @param string $value
+     * @return string
      */
-    public static function remove($variable, $value)
+    public static function remove(string $variable, string $value): string
     {
-        if (!is_string($variable) || !is_string($value)) {
-            return $variable;
-        }
-
         return str_replace($value, '', $variable);
     }
 
     /**
      * Replace occurrences of a string with another
-     * @param mixed $variable
-     * @param mixed $value
-     * @param mixed $replacement
-     * @return string|mixed
+     * @param string $variable
+     * @param string $value
+     * @param string $replacement
+     * @return string
      */
-    public static function replace($variable, $value, $replacement = '')
-    {
-        if (!is_string($variable) || !is_string($value) || !is_string($replacement)) {
-            return $variable;
-        }
-
+    public static function replace(
+        string $variable,
+        string $value,
+        string $replacement = ''
+    ): string {
         return str_replace($value, $replacement, $variable);
     }
 
     /**
      * Truncate a string down to x characters
-     * @param mixed $variable
-     * @param int|mixed $count
-     * @param string|mixed $ending
-     * @return string|mixed
+     * @param string $variable
+     * @param int|string $count
+     * @param string $ending
+     * @return string
      */
-    public static function truncate($variable, $count = 100, $ending = '...')
-    {
-        if (!is_string($variable) || !is_string($ending) || !is_numeric($count)) {
-            return $variable;
-        }
-
+    public static function truncate(
+        string $variable,
+        int|string $count = 100,
+        string $ending = '...'
+    ): string {
         $numberChar = (int) $count;
         if (strlen($variable) > $numberChar) {
             return substr($variable, 0, $numberChar) . $ending;
@@ -174,14 +168,17 @@ class StringFilter extends AbstractFilter
 
     /**
      * Truncate string down to x words
-     * @param mixed $variable
-     * @param int|mixed $count
-     * @param string|mixed $ending
-     * @return string|mixed
+     * @param string $variable
+     * @param int|string $count
+     * @param string $ending
+     * @return string
      */
-    public static function truncateWord($variable, $count = 3, $ending = '...')
-    {
-        if (!is_string($variable) || !is_string($ending) || !is_numeric($count)) {
+    public static function truncateWord(
+        string $variable,
+        int|string $count = 3,
+        string $ending = '...'
+    ): string {
+        if (!is_numeric($count)) {
             return $variable;
         }
 
@@ -196,15 +193,11 @@ class StringFilter extends AbstractFilter
 
     /**
      * Put all letters to upper case
-     * @param mixed $variable
-     * @return string|mixed
+     * @param string $variable
+     * @return string
      */
-    public static function upper($variable)
+    public static function upper(string $variable): string
     {
-        if (!is_string($variable)) {
-            return $variable;
-        }
-
         if (function_exists('mb_strtoupper')) {
             return mb_strtoupper($variable);
         }
@@ -214,38 +207,30 @@ class StringFilter extends AbstractFilter
 
     /**
      * URL encodes a string
-     * @param mixed $variable
-     * @return string|mixed
+     * @param string $variable
+     * @return string
      */
-    public static function urlEncode($variable)
+    public static function urlEncode(string $variable): string
     {
-        if (!is_string($variable)) {
-            return $variable;
-        }
-
         return urlencode($variable);
     }
 
     /**
      * Decodes a URL-encoded string
-     * @param mixed $variable
-     * @return string|mixed
+     * @param string $variable
+     * @return string
      */
-    public static function urlDecode($variable)
+    public static function urlDecode(string $variable): string
     {
-        if (!is_string($variable)) {
-            return $variable;
-        }
-
         return urldecode($variable);
     }
 
     /**
      * Explicit string conversion.
      * @param mixed $variable
-     * @return string|mixed
+     * @return array<mixed>|string
      */
-    public static function stringfy($variable)
+    public static function stringfy(mixed $variable): array|string
     {
         if (is_array($variable)) {
             return $variable;
@@ -257,14 +242,14 @@ class StringFilter extends AbstractFilter
     /**
      * Split input string into an array of sub
      * strings separated by given pattern.
-     * @param string|mixed $variable
-     * @param mixed $pattern
-     * @return array<mixed>|mixed
+     * @param string $variable
+     * @param string $pattern
+     * @return array<mixed>
      */
-    public static function split($variable, $pattern)
+    public static function split(string $variable, string $pattern): array
     {
-        if (!is_string($variable) || !is_string($pattern)) {
-            return $variable;
+        if (empty($pattern)) {
+            return [$variable];
         }
 
         return explode($pattern, $variable);
@@ -272,54 +257,42 @@ class StringFilter extends AbstractFilter
 
     /**
      * If the given value is part of the variable
-     * @param string|mixed $variable
-     * @param mixed $value
-     * @return int|false|mixed
+     * @param string $variable
+     * @param string $value
+     * @return int|false
      */
-    public static function find($variable, $value)
+    public static function find(string $variable, string $value): int|false
     {
-        if (!is_string($variable) || !is_string($value)) {
-            return $variable;
-        }
-
         return strpos($variable, $value);
     }
 
     /**
      * Pseudo-filter: negates auto-added escape filter
      * @param mixed $variable
-     * @return string|mixed
+     * @return mixed
      */
-    public static function raw($variable)
+    public static function raw(mixed $variable): mixed
     {
         return $variable;
     }
 
     /**
      * Escape a string
-     * @param mixed $variable
-     * @return string|mixed
+     * @param string $variable
+     * @return string
      */
-    public static function escape($variable)
+    public static function escape(string $variable): string
     {
-        if (!is_string($variable)) {
-            return $variable;
-        }
-
         return htmlspecialchars($variable, ENT_QUOTES);
     }
 
     /**
      * Escape a string once, keeping all previous HTML entities intact
-     * @param mixed $variable
-     * @return string|mixed
+     * @param string $variable
+     * @return string
      */
-    public static function escapeOnce($variable)
+    public static function escapeOnce(string $variable): string
     {
-        if (!is_string($variable)) {
-            return $variable;
-        }
-
         return htmlentities($variable, ENT_QUOTES, null, false);
     }
 
@@ -329,7 +302,7 @@ class StringFilter extends AbstractFilter
      * @param mixed $value
      * @return mixed
      */
-    public static function defaultValue($variable, $value)
+    public static function defaultValue(mixed $variable, mixed $value): mixed
     {
         $isBlank = (is_string($variable) && $variable === '')
                     || is_bool($variable) && $variable === false
@@ -342,16 +315,12 @@ class StringFilter extends AbstractFilter
     /**
      * Join elements of an array with a given
      * character between them
-     * @param array<mixed>|Traversable|mixed $variable
-     * @param mixed $glue
-     * @return string|mixed
+     * @param array<mixed>|Traversable|iterable<mixed> $variable
+     * @param string $glue
+     * @return string
      */
-    public static function join($variable, $glue = ' ')
+    public static function join(iterable $variable, string $glue = ' '): string
     {
-        if (!is_string($glue)) {
-            return $variable;
-        }
-
         if ($variable instanceof Traversable) {
             $str = '';
             foreach ($variable as $element) {
@@ -365,22 +334,16 @@ class StringFilter extends AbstractFilter
             return $str;
         }
 
-        return is_array($variable)
-                ? implode($glue, $variable)
-                : $variable;
+        return implode($glue, $variable);
     }
 
     /**
      * Put all letter to lower case
-     * @param mixed $variable
-     * @return string|mixed
+     * @param string $variable
+     * @return string
      */
-    public static function lower($variable)
+    public static function lower(string $variable): string
     {
-        if (!is_string($variable)) {
-            return $variable;
-        }
-
         if (function_exists('mb_strtolower')) {
             return mb_strtolower($variable);
         }
@@ -390,15 +353,11 @@ class StringFilter extends AbstractFilter
 
     /**
      * Capitalize words in the input sentence
-     * @param mixed $variable
-     * @return string|mixed
+     * @param string $variable
+     * @return string
      */
-    public static function capitalize($variable)
+    public static function capitalize(string $variable): string
     {
-        if (!is_string($variable)) {
-            return $variable;
-        }
-
         return (string) preg_replace_callback(
             '/(^|[^\p{L}\'])([\p{Ll}])/u',
             function ($matches) {
@@ -410,71 +369,51 @@ class StringFilter extends AbstractFilter
 
     /**
      * Remove the left blank characters
-     * @param mixed $variable
-     * @return string|mixed
+     * @param string $variable
+     * @return string
      */
-    public static function lstrip($variable)
+    public static function lstrip(string $variable): string
     {
-        if (!is_string($variable)) {
-            return $variable;
-        }
-
         return ltrim($variable);
     }
 
     /**
      * Remove the right blank characters
-     * @param mixed $variable
-     * @return string|mixed
+     * @param string $variable
+     * @return string
      */
-    public static function rstrip($variable)
+    public static function rstrip(string $variable): string
     {
-        if (!is_string($variable)) {
-            return $variable;
-        }
-
         return rtrim($variable);
     }
 
     /**
      * Remove the left and right blank characters
-     * @param mixed $variable
-     * @return string|mixed
+     * @param string $variable
+     * @return string
      */
-    public static function strip($variable)
+    public static function strip(string $variable): string
     {
-        if (!is_string($variable)) {
-            return $variable;
-        }
-
         return trim($variable);
     }
 
     /**
      * Removes HTML tags from text
-     * @param mixed $variable
-     * @return string|mixed
+     * @param string $variable
+     * @return string
      */
-    public static function stripHtml($variable)
+    public static function stripHtml(string $variable): string
     {
-        if (!is_string($variable)) {
-            return $variable;
-        }
-
         return strip_tags($variable);
     }
 
     /**
      * Strip all newlines (\n, \r) from string
-     * @param mixed $variable
-     * @return string|mixed
+     * @param string $variable
+     * @return string
      */
-    public static function stripNewLine($variable)
+    public static function stripNewLine(string $variable): string
     {
-        if (!is_string($variable)) {
-            return $variable;
-        }
-
         return str_replace(["\n", "\r"], '', $variable);
     }
 }

@@ -55,7 +55,7 @@ use Platine\Template\Parser\AbstractFilter;
 use Traversable;
 
 /**
- * Class ArrayFilter
+ * @class ArrayFilter
  * @package Platine\Template\Filter
  */
 class ArrayFilter extends AbstractFilter
@@ -65,7 +65,7 @@ class ArrayFilter extends AbstractFilter
      * @param array<mixed>|Iterator<mixed>|mixed $value
      * @return mixed
      */
-    public static function first($value)
+    public static function first(mixed $value): mixed
     {
         if (is_array($value)) {
             return reset($value);
@@ -85,7 +85,7 @@ class ArrayFilter extends AbstractFilter
      * @param array<mixed>|Traversable<mixed>|mixed $value
      * @return mixed
      */
-    public static function last($value)
+    public static function last(mixed $value): mixed
     {
         if (is_array($value)) {
             return end($value);
@@ -106,10 +106,10 @@ class ArrayFilter extends AbstractFilter
     /**
      * Sort an array.
      * @param array<int|string, mixed>|mixed $variable
-     * @param mixed $property
+     * @param int|string|null $property
      * @return mixed
      */
-    public static function sort($variable, $property = null)
+    public static function sort(mixed $variable, int|string|null $property = null): mixed
     {
         if ($variable instanceof Traversable) {
             $variable = iterator_to_array($variable);
@@ -134,7 +134,7 @@ class ArrayFilter extends AbstractFilter
      * @param array<int|string, mixed>|mixed $variable
      * @return mixed
      */
-    public static function sortKey($variable)
+    public static function sortKey(mixed $variable): mixed
     {
         if (is_array($variable)) {
             ksort($variable);
@@ -146,10 +146,10 @@ class ArrayFilter extends AbstractFilter
 
     /**
      * Remove duplicate elements from an array
-     * @param array<int|string, mixed>|mixed $variable
-     * @return mixed
+     * @param array<int|string, mixed> $variable
+     * @return array<mixed>
      */
-    public static function unique($variable)
+    public static function unique(iterable $variable): array
     {
         if ($variable instanceof Traversable) {
             $variable = iterator_to_array($variable);
@@ -161,10 +161,10 @@ class ArrayFilter extends AbstractFilter
     /**
      * Map/collect on a given property
      * @param array<mixed>|Traversable|mixed $variable
-     * @param mixed $property
-     * @return string|mixed
+     * @param int|string $property
+     * @return mixed
      */
-    public static function map($variable, $property)
+    public static function map(mixed $variable, int|string $property): mixed
     {
         if ($variable instanceof Traversable) {
             $variable = iterator_to_array($variable);
@@ -174,24 +174,26 @@ class ArrayFilter extends AbstractFilter
             return $variable;
         }
 
-        return array_map(function ($element) use ($property) {
-            if (is_callable($element)) {
-                return $element();
-            } elseif (is_array($element) && array_key_exists($property, $element)) {
-                return $element[$property];
-            }
+        return array_map(
+            function ($element) use ($property) {
+                if (is_callable($element)) {
+                    return $element();
+                } elseif (is_array($element) && array_key_exists($property, $element)) {
+                    return $element[$property];
+                }
 
-            return null;
-        },
-        $variable);
+                return null;
+            },
+            $variable
+        );
     }
 
     /**
      * Reverse the elements of an array
      * @param array<mixed>|Traversable|mixed $variable
-     * @return string|mixed
+     * @return mixed
      */
-    public static function reverse($variable)
+    public static function reverse(mixed $variable): mixed
     {
         if ($variable instanceof Traversable) {
             $variable = iterator_to_array($variable);
@@ -210,7 +212,7 @@ class ArrayFilter extends AbstractFilter
      * @param mixed $pretty whether use pretty print
      * @return string
      */
-    public static function json($variable, $pretty = false)
+    public static function json(mixed $variable, mixed $pretty = false): string
     {
         $prettyPrint = boolval($pretty);
         $options = 0;

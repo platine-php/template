@@ -58,7 +58,7 @@ use Platine\Template\Parser\Parser;
 use Platine\Template\Parser\Token;
 
 /**
- * Class ExtendsTag
+ * @class ExtendsTag
  * @package Platine\Template\Tag
  */
 class ExtendsTag extends AbstractTag
@@ -106,7 +106,7 @@ class ExtendsTag extends AbstractTag
     /**
     * {@inheritdoc}
     */
-    public function parse(&$tokens): void
+    public function parse(array &$tokens): void
     {
         $source = $this->parser->getLoader()->read($this->templateName);
         $mainTokens = $this->parser->tokenize($source);
@@ -170,7 +170,6 @@ class ExtendsTag extends AbstractTag
         }
 
         $cache = $this->parser->getTemplate()->getCache();
-
         $this->hash = md5($this->templateName);
 
         /** @var Document|false $document */

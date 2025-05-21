@@ -53,7 +53,7 @@ use Platine\Template\Parser\AbstractTag;
 use Platine\Template\Parser\Context;
 
 /**
- * Class BreakTag
+ * @class BreakTag
  * @package Platine\Template\Tag
  */
 class BreakTag extends AbstractTag

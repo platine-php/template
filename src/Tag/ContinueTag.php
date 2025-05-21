@@ -53,7 +53,7 @@ use Platine\Template\Parser\AbstractTag;
 use Platine\Template\Parser\Context;
 
 /**
- * Class ContinueTag
+ * @class ContinueTag
  * @package Platine\Template\Tag
  */
 class ContinueTag extends AbstractTag

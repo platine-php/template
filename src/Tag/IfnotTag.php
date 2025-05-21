@@ -50,7 +50,7 @@ declare(strict_types=1);
 namespace Platine\Template\Tag;
 
 /**
- * Class IfnotTag
+ * @class IfnotTag
  * @package Platine\Template\Tag
  */
 class IfnotTag extends IfTag
@@ -58,7 +58,7 @@ class IfnotTag extends IfTag
     /**
     * {@inheritdoc}
     */
-    protected function negateCondition($value)
+    protected function negateCondition(mixed $value): mixed
     {
         return !$value;
     }

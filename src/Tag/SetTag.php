@@ -57,7 +57,7 @@ use Platine\Template\Parser\Parser;
 use Platine\Template\Parser\Variable;
 
 /**
- * Class SetTag
+ * @class SetTag
  * @package Platine\Template\Tag
  */
 class SetTag extends AbstractTag

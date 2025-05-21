@@ -53,7 +53,7 @@ use Platine\Template\Parser\AbstractBlock;
 use Platine\Template\Parser\Context;
 
 /**
- * Class CommentTag
+ * @class CommentTag
  * @package Platine\Template\Tag
  */
 class CommentTag extends AbstractBlock

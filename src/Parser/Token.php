@@ -50,7 +50,7 @@ declare(strict_types=1);
 namespace Platine\Template\Parser;
 
 /**
- * Class Token
+ * @class Token
  * @package Platine\Template\Parser
  */
 class Token

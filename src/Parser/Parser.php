@@ -54,17 +54,11 @@ use Platine\Template\Loader\LoaderInterface;
 use Platine\Template\Template;
 
 /**
- * Class Parser
+ * @class Parser
  * @package Platine\Template\Parser
  */
 class Parser
 {
-    /**
-     * The template instance
-     * @var Template
-     */
-    protected Template $template;
-
     /**
      * The root of the node tree
      * @var Document
@@ -75,9 +69,8 @@ class Parser
      * Create new instance
      * @param Template $template
      */
-    public function __construct(Template $template)
+    public function __construct(protected Template $template)
     {
-        $this->template = $template;
     }
 
     /**

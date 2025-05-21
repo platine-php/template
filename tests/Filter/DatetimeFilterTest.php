@@ -16,11 +16,6 @@ use Platine\Template\Filter\DatetimeFilter;
  */
 class DatetimeFilterTest extends PlatineTestCase
 {
-    public function testDateParamsIsNotStrings(): void
-    {
-        $this->assertEquals(23, DatetimeFilter::date(23, 22));
-    }
-
     public function testDateValueIsNotNumeric(): void
     {
         $this->assertEquals(2021, DatetimeFilter::date('2021-01-01', 'Y'));

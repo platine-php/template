@@ -54,7 +54,7 @@ use Platine\Template\Parser\Lexer;
 use Platine\Template\Parser\Token;
 
 /**
- * Class RawTag
+ * @class RawTag
  * @package Platine\Template\Tag
  */
 class RawTag extends AbstractBlock

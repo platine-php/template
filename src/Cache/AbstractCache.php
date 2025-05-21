@@ -52,7 +52,7 @@ namespace Platine\Template\Cache;
 use Platine\Template\Configuration;
 
 /**
- * Class AbstractCache
+ * @class AbstractCache
  * @package Platine\Template\Cache
  */
 abstract class AbstractCache
@@ -91,9 +91,9 @@ abstract class AbstractCache
      * Return the cache stored value
      * @param string $key
      * @param bool $unserialize
-     * @return mixed|bool
+     * @return mixed
      */
-    abstract public function read(string $key, bool $unserialize = true);
+    abstract public function read(string $key, bool $unserialize = true): mixed;
 
     /**
      * Whether the cache exists
@@ -109,7 +109,7 @@ abstract class AbstractCache
      * @param bool $serialize
      * @return bool
      */
-    abstract public function write(string $key, $value, bool $serialize = true): bool;
+    abstract public function write(string $key, mixed $value, bool $serialize = true): bool;
 
 
     /**

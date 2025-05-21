@@ -50,7 +50,7 @@ declare(strict_types=1);
 namespace Platine\Template\Cache;
 
 /**
- * Class NullCache
+ * @class NullCache
  * @package Platine\Template\Cache
  */
 class NullCache extends AbstractCache
@@ -58,7 +58,7 @@ class NullCache extends AbstractCache
     /**
     * {@inheritdoc}
     */
-    public function read(string $key, bool $unserialize = false)
+    public function read(string $key, bool $unserialize = false): mixed
     {
         return false;
     }
@@ -74,7 +74,7 @@ class NullCache extends AbstractCache
     /**
     * {@inheritdoc}
     */
-    public function write(string $key, $value, bool $serialize = false): bool
+    public function write(string $key, mixed $value, bool $serialize = false): bool
     {
         return true;
     }

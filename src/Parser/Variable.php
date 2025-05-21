@@ -52,7 +52,7 @@ namespace Platine\Template\Parser;
 use Platine\Template\Util\Helper;
 
 /**
- * Class Variable
+ * @class Variable
  * @package Platine\Template\Parser
  */
 class Variable
@@ -185,7 +185,7 @@ class Variable
      * @param Context $context
      * @return mixed
      */
-    public function render(Context $context)
+    public function render(Context $context): mixed
     {
         $output = $context->get($this->name);
         foreach ($this->filters as $filter) {

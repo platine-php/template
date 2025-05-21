@@ -52,7 +52,7 @@ namespace Platine\Template;
 use Platine\Stdlib\Config\AbstractConfiguration;
 
 /**
- * Class Configuration
+ * @class Configuration
  * @package Platine\Template
  */
 class Configuration extends AbstractConfiguration

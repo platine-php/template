@@ -38,7 +38,7 @@ namespace Platine\Template\Exception;
 use Exception;
 
 /**
- * Class TemplateException
+ * @class TemplateException
  * @package Platine\Template\Exception
  */
 class TemplateException extends Exception

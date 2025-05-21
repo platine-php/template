@@ -55,7 +55,7 @@ use Platine\Template\Parser\Lexer;
 use Platine\Template\Parser\Parser;
 
 /**
- * Class BlockTag
+ * @class BlockTag
  * @package Platine\Template\Tag
  */
 class BlockTag extends AbstractBlock

@@ -55,7 +55,7 @@ use Platine\Template\Filter\ArrayFilter;
 use TypeError;
 
 /**
- * Class Context
+ * @class Context
  * @package Platine\Template\Parser
  */
 class Context
@@ -128,7 +128,7 @@ class Context
      * @param callable|null $tickCallback
      * @return $this
      */
-    public function setTickCallback(?callable $tickCallback)
+    public function setTickCallback(?callable $tickCallback): self
     {
         $this->tickCallback = $tickCallback;
 
@@ -154,7 +154,7 @@ class Context
      * @param array<int, mixed> $args
      * @return mixed
      */
-    public function invokeFilter(string $name, $value, array $args = [])
+    public function invokeFilter(string $name, mixed $value, array $args = []): mixed
     {
         try {
             return $this->filters->invoke($name, $value, $args);
@@ -199,7 +199,7 @@ class Context
      * @param string $key
      * @return mixed
      */
-    public function get(string $key)
+    public function get(string $key): mixed
     {
         return $this->resolve($key);
     }
@@ -211,7 +211,7 @@ class Context
      * @param bool $global
      * @return void
      */
-    public function set(string $key, $value, bool $global = false): void
+    public function set(string $key, mixed $value, bool $global = false): void
     {
         if ($global) {
             $count = count($this->assigns);
@@ -258,9 +258,9 @@ class Context
     /**
      * Return the value for the given register
      * @param string $name
-     * @return mixed|null
+     * @return mixed
      */
-    public function getRegister(string $name)
+    public function getRegister(string $name): mixed
     {
         if ($this->hasRegister($name)) {
             return $this->registers[$name];
@@ -275,7 +275,7 @@ class Context
      * @param mixed $value
      * @return $this
      */
-    public function setRegister(string $name, $value): self
+    public function setRegister(string $name, mixed $value): self
     {
         $this->registers[$name] = $value;
 
@@ -295,9 +295,9 @@ class Context
     /**
      * Return the value for the given environment
      * @param string $name
-     * @return mixed|null
+     * @return mixed
      */
-    public function getEnvironment(string $name)
+    public function getEnvironment(string $name): mixed
     {
         if ($this->hasEnvironment($name)) {
             return $this->environments[$name];
@@ -312,7 +312,7 @@ class Context
      * @param mixed $value
      * @return $this
      */
-    public function setEnvironment(string $name, $value): self
+    public function setEnvironment(string $name, mixed $value): self
     {
         $this->environments[$name] = $value;
 
@@ -336,9 +336,9 @@ class Context
      * Resolve a key by either returning the appropriate literal
      * or by looking up the appropriate variable
      * @param string $key
-     * @return mixed|null
+     * @return mixed
      */
-    protected function resolve(string $key)
+    protected function resolve(string $key): mixed
     {
         if ($key === 'null') {
             return null;
@@ -375,9 +375,9 @@ class Context
     /**
      * Fetches the current key in all the scopes
      * @param string $key
-     * @return mixed|null
+     * @return mixed
      */
-    protected function fetch(string $key)
+    protected function fetch(string $key): mixed
     {
         if (array_key_exists($key, $this->environments)) {
             return $this->environments[$key];
@@ -401,9 +401,9 @@ class Context
     /**
      * Resolved the name spaced queries gracefully.
      * @param string $key
-     * @return mixed|null
+     * @return mixed
      */
-    protected function variable(string $key)
+    protected function variable(string $key): mixed
     {
         // Support numeric and variable array indicies
         $matches = [];
@@ -457,7 +457,6 @@ class Context
 
                     return null;
                 }
-
 
                 if (is_array($object)) {
                     if (
@@ -562,5 +561,7 @@ class Context
             */
             return $object;
         }
+
+        return null;
     }
 }

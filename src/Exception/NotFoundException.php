@@ -36,7 +36,7 @@ declare(strict_types=1);
 namespace Platine\Template\Exception;
 
 /**
- * Class NotFoundException
+ * @class NotFoundException
  * @package Platine\Template\Exception
  */
 class NotFoundException extends LoaderException

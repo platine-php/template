@@ -52,24 +52,17 @@ namespace Platine\Template\Loader;
 use Platine\Template\Exception\NotFoundException;
 
 /**
- * Class StringLoader
+ * @class StringLoader
  * @package Platine\Template\Loader
  */
 class StringLoader implements LoaderInterface
 {
     /**
-     * The string hash data
-     * @var array<string, string>
-     */
-    protected array $data;
-
-    /**
      * Create new instance
-     * @param array<string, string> $data
+     * @param array<string, string> $data The string hash data
      */
-    public function __construct(array $data)
+    public function __construct(protected array $data)
     {
-        $this->data = $data;
     }
 
     /**
@@ -77,7 +70,7 @@ class StringLoader implements LoaderInterface
     */
     public function read(string $name): string
     {
-        if (!array_key_exists($name, $this->data)) {
+        if (array_key_exists($name, $this->data) === false) {
             throw new NotFoundException(sprintf(
                 'Template [%s] does not exist',
                 $name

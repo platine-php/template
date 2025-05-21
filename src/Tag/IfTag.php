@@ -57,7 +57,7 @@ use Platine\Template\Parser\Parser;
 use Platine\Template\Parser\Token;
 
 /**
- * Class IfTag
+ * @class IfTag
  * @package Platine\Template\Tag
  */
 class IfTag extends AbstractCondition
@@ -207,7 +207,7 @@ class IfTag extends AbstractCondition
      * @param mixed $value
      * @return mixed
      */
-    protected function negateCondition($value)
+    protected function negateCondition(mixed $value): mixed
     {
         // no need to negate a condition in a regular `if`
         // tag (will do that in `ifnot` tag)
@@ -224,7 +224,7 @@ class IfTag extends AbstractCondition
             // Update reference to node list holder for this block
             $this->nodeListHolders[count($this->blocks) + 1] = [];
             $this->nodeList = & $this->nodeListHolders[count($this->blocks) + 1];
-            array_push($this->blocks, [$tag, $param, & $this->nodeList]);
+            array_push($this->blocks, [$tag, $param, &$this->nodeList]);
         } else {
             parent::unknownTag($tag, $param, $tokens);
         }

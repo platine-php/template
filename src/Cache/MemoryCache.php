@@ -50,7 +50,7 @@ declare(strict_types=1);
 namespace Platine\Template\Cache;
 
 /**
- * Class MemoryCache
+ * @class MemoryCache
  * @package Platine\Template\Cache
  */
 class MemoryCache extends AbstractCache
@@ -64,9 +64,9 @@ class MemoryCache extends AbstractCache
     /**
     * {@inheritdoc}
     */
-    public function read(string $key, bool $unserialize = false)
+    public function read(string $key, bool $unserialize = false): mixed
     {
-        if (!$this->exists($key)) {
+        if ($this->exists($key) === false) {
             return false;
         }
 
@@ -84,7 +84,7 @@ class MemoryCache extends AbstractCache
     /**
     * {@inheritdoc}
     */
-    public function write(string $key, $value, bool $serialize = false): bool
+    public function write(string $key, mixed $value, bool $serialize = false): bool
     {
         $this->data[$key] = $value;
 

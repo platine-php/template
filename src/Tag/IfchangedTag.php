@@ -54,7 +54,7 @@ use Platine\Template\Parser\Context;
 use Platine\Template\Parser\Parser;
 
 /**
- * Class IfchangedTag
+ * @class IfchangedTag
  * @package Platine\Template\Tag
  */
 class IfchangedTag extends AbstractBlock

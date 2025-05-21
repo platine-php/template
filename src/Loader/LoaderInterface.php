@@ -50,7 +50,7 @@ declare(strict_types=1);
 namespace Platine\Template\Loader;
 
 /**
- * Class LoaderInterface
+ * @class LoaderInterface
  * @package Platine\Template\Loader
  */
 interface LoaderInterface

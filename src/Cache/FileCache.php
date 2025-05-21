@@ -54,7 +54,7 @@ use Platine\Template\Exception\NotFoundException;
 use Platine\Template\Util\Helper;
 
 /**
- * Class FileCache
+ * @class FileCache
  * @package Platine\Template\Cache
  */
 class FileCache extends AbstractCache
@@ -78,7 +78,7 @@ class FileCache extends AbstractCache
 
         if ($realPath === false || !is_writable($realPath)) {
             throw new NotFoundException(sprintf(
-                'The cache directory [%s] does not exist or writable',
+                'The cache directory [%s] does not exist or is not writable',
                 $path
             ));
         }
@@ -89,9 +89,9 @@ class FileCache extends AbstractCache
     /**
     * {@inheritdoc}
     */
-    public function read(string $key, bool $unserialize = true)
+    public function read(string $key, bool $unserialize = true): mixed
     {
-        if (!$this->exists($key)) {
+        if ($this->exists($key) === false) {
             return false;
         }
 
@@ -111,7 +111,7 @@ class FileCache extends AbstractCache
     {
         $file = $this->getFilePath($key);
 
-        if (!file_exists($file) || (filemtime($file) + $this->expire) < time()) {
+        if (file_exists($file) === false || (filemtime($file) + $this->expire) < time()) {
             return false;
         }
 
@@ -121,7 +121,7 @@ class FileCache extends AbstractCache
     /**
     * {@inheritdoc}
     */
-    public function write(string $key, $value, bool $serialize = true): bool
+    public function write(string $key, mixed $value, bool $serialize = true): bool
     {
         $file = $this->getFilePath($key);
         if ($serialize) {
