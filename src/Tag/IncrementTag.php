@@ -94,12 +94,11 @@ class IncrementTag extends AbstractTag
         if ($context->hasEnvironment($this->name) === false) {
             // check for a context value
             $fromContext = $context->get($this->name);
-
-            $context->setEnvironment($this->name, $fromContext !== null ?? 0);
+            $context->setEnvironment($this->name, $fromContext !== null ? $fromContext : 0);
         }
         // increment the environment value
         $currentValue = $context->getEnvironment($this->name);
-
+        
         $context->setEnvironment($this->name, ++$currentValue);
 
         return '';

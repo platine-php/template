@@ -95,7 +95,7 @@ class DecrementTag extends AbstractTag
             // check for a context value
             $fromContext = $context->get($this->name);
 
-            $context->setEnvironment($this->name, $fromContext ?? 0);
+            $context->setEnvironment($this->name, $fromContext ? $fromContext : 0);
         }
         // decrement the environment value
         $currentValue = $context->getEnvironment($this->name);
