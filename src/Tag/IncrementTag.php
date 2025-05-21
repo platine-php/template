@@ -98,7 +98,7 @@ class IncrementTag extends AbstractTag
         }
         // increment the environment value
         $currentValue = $context->getEnvironment($this->name);
-        
+
         $context->setEnvironment($this->name, ++$currentValue);
 
         return '';

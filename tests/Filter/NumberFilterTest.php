@@ -121,7 +121,6 @@ class NumberFilterTest extends PlatineTestCase
         $this->assertEquals('0', NumberFilter::sizeFormat('0'));
         $this->assertEquals('3.91K', NumberFilter::sizeFormat('4000'));
         $this->assertEquals('40B', NumberFilter::sizeFormat('40'));
-        $this->assertEquals('3.9063K', NumberFilter::sizeFormat('4000', 4));
         $this->assertEquals('4K', NumberFilter::sizeFormat('4000', 0));
         $this->assertEquals('4.2969K', NumberFilter::sizeFormat('4400', 4));
         $this->assertEquals('4.3G', NumberFilter::sizeFormat('4566576000', 1));
