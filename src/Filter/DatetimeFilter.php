@@ -60,12 +60,16 @@ class DatetimeFilter extends AbstractFilter
 {
     /**
      * Formats a date
-     * @param string|DateTimeInterface|int $variable
+     * @param string|DateTimeInterface|int|null $variable
      * @param string $format
      * @return string|mixed
      */
-    public static function date(string|DateTimeInterface|int $variable, string $format): mixed
+    public static function date(string|DateTimeInterface|int|null $variable, string $format): mixed
     {
+        if ($variable === null) {
+            return null;
+        }
+
         if ($variable instanceof DateTimeInterface) {
             return $variable->format($format);
         }

@@ -300,7 +300,7 @@ class StringFilter extends AbstractFilter
         if ($variable === null) {
             return null;
         }
-        
+
         return htmlentities($variable, ENT_QUOTES, null, false);
     }
 

@@ -64,7 +64,7 @@ class HtmlFilter extends AbstractFilter
      */
     public static function nl2br(mixed $variable): mixed
     {
-        if (!is_string($variable)) {
+        if (is_string($variable) === false) {
             return $variable;
         }
 

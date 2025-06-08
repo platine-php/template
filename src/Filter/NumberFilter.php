@@ -149,19 +149,19 @@ class NumberFilter extends AbstractFilter
 
     /**
      * Number format
-     * @param float|int|string $variable
+     * @param float|int|string|null $variable
      * @param int|string $decimal
      * @param string $decimalPoint
      * @param string $separator
      * @return string
      */
     public static function format(
-        float|int|string $variable,
+        float|int|string|null $variable,
         int|string $decimal = 0,
         string $decimalPoint = '.',
         string $separator = ','
     ): string {
-        if (!is_numeric($variable)) {
+        if (is_numeric($variable) === false) {
             return $variable;
         }
 
@@ -175,19 +175,19 @@ class NumberFilter extends AbstractFilter
 
     /**
      * Number format for money
-     * @param float|int|string $variable
+     * @param float|int|string|null $variable
      * @param string|int $decimal
      * @param string $decimalPoint
      * @param string $separator
      * @return string
      */
     public static function formatMoney(
-        float|int|string $variable,
+        float|int|string|null $variable,
         int|string $decimal = 0,
         string $decimalPoint = '.',
         string $separator = ','
     ): string {
-        if (!is_numeric($variable)) {
+        if (is_numeric($variable) === false) {
             return $variable;
         }
 
@@ -206,10 +206,10 @@ class NumberFilter extends AbstractFilter
 
     /**
      * Return the given number to string
-     * @param float|int|string $variable
+     * @param float|int|string|null $variable
      * @return string
      */
-    public static function numberToString(float|int|string $variable): string
+    public static function numberToString(float|int|string|null $variable): string
     {
         $value = (string) $variable;
         if (stripos($value, 'e') !== false) {
@@ -233,15 +233,15 @@ class NumberFilter extends AbstractFilter
 
     /**
      * Units format
-     * @param float|int|string $variable
+     * @param float|int|string|null $variable
      * @param int|string $precision
      * @return float|int|string
      */
     public static function sizeFormat(
-        float|int|string $variable,
+        float|int|string|null $variable,
         int|string $precision = 2
     ): float|int|string {
-        if (!is_numeric($variable)) {
+        if (is_numeric($variable) === false) {
             return $variable;
         }
 
