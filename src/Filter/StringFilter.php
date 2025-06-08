@@ -278,21 +278,29 @@ class StringFilter extends AbstractFilter
 
     /**
      * Escape a string
-     * @param string $variable
-     * @return string
+     * @param string|null $variable
+     * @return string|null
      */
-    public static function escape(string $variable): string
+    public static function escape(?string $variable): ?string
     {
+        if ($variable === null) {
+            return null;
+        }
+
         return htmlspecialchars($variable, ENT_QUOTES);
     }
 
     /**
      * Escape a string once, keeping all previous HTML entities intact
-     * @param string $variable
-     * @return string
+     * @param string|null $variable
+     * @return string|null
      */
-    public static function escapeOnce(string $variable): string
+    public static function escapeOnce(?string $variable): ?string
     {
+        if ($variable === null) {
+            return null;
+        }
+        
         return htmlentities($variable, ENT_QUOTES, null, false);
     }
 

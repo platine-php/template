@@ -58,9 +58,9 @@ use Platine\Template\Parser\AbstractFilter;
 class HtmlFilter extends AbstractFilter
 {
     /**
-     * Put all letter to lower case
+     * Replace new line to <br />
      * @param mixed $variable
-     * @return string|mixed
+     * @return mixed
      */
     public static function nl2br(mixed $variable): mixed
     {

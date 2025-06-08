@@ -190,11 +190,23 @@ class StringFilterTest extends PlatineTestCase
         $result = StringFilter::escape('1<b>');
         $this->assertEquals('1&lt;b&gt;', $result);
     }
+    
+    public function testEscapeNull(): void
+    {
+        $result = StringFilter::escape(null);
+        $this->assertNull($result);
+    }
 
     public function testEscapeOnce(): void
     {
         $result = StringFilter::escapeOnce('1<b>');
         $this->assertEquals('1&lt;b&gt;', $result);
+    }
+    
+    public function testEscapeOnceNull(): void
+    {
+        $result = StringFilter::escapeOnce(null);
+        $this->assertNull($result);
     }
 
     public function testDefaultValue(): void
