@@ -20,7 +20,7 @@ class DatetimeFilterTest extends PlatineTestCase
     {
         $this->assertEquals(null, DatetimeFilter::date(null, 'Y'));
     }
-    
+
     public function testDateValueIsNotNumeric(): void
     {
         $this->assertEquals(2021, DatetimeFilter::date('2021-01-01', 'Y'));

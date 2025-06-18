@@ -91,7 +91,7 @@ class CaseTag extends AbstractCondition
     /**
     * {@inheritdoc}
     */
-    public function __construct(string $markup, &$tokens, Parser $parser)
+    public function __construct(string $markup, array &$tokens, Parser $parser)
     {
         parent::__construct($markup, $tokens, $parser);
 

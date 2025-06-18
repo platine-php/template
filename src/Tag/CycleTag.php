@@ -78,7 +78,7 @@ class CycleTag extends AbstractTag
     /**
     * {@inheritdoc}
     */
-    public function __construct(string $markup, &$tokens, Parser $parser)
+    public function __construct(string $markup, array &$tokens, Parser $parser)
     {
         $lexerSimple = new Lexer('/' . Token::QUOTED_FRAGMENT . '/');
         $lexerNamed = new Lexer('/(' . Token::QUOTED_FRAGMENT . ')\s*\:\s*(.*)/');
@@ -140,15 +140,12 @@ class CycleTag extends AbstractTag
     {
         $lexer = new Lexer('/\s*(' . Token::QUOTED_FRAGMENT . ')\s*/');
         $parts = explode(',', $markup);
-
         $result = [];
-        if ($parts !== false) {
-            foreach ($parts as $part) {
-                $lexer->match($part);
+        foreach ($parts as $part) {
+            $lexer->match($part);
 
-                if ($lexer->getStringMatch(1)) {
-                    $result[] = $lexer->getStringMatch(1);
-                }
+            if ($lexer->getStringMatch(1)) {
+                $result[] = $lexer->getStringMatch(1);
             }
         }
 

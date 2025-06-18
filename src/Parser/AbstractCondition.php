@@ -51,6 +51,7 @@ namespace Platine\Template\Parser;
 
 use Generator;
 use Platine\Template\Exception\RenderException;
+use Stringable;
 
 /**
  * @class AbstractCondition
@@ -78,7 +79,7 @@ abstract class AbstractCondition extends AbstractBlock
     protected function stringValue(mixed $value): mixed
     {
         if (is_object($value)) {
-            if (method_exists($value, '__toString')) {
+            if (method_exists($value, '__toString') || $value instanceof Stringable) {
                 return (string) $value;
             }
 
@@ -168,7 +169,7 @@ abstract class AbstractCondition extends AbstractBlock
             }
 
             //null != anything other than null => true
-            if ($operator === '!=' && (is_null($left) || is_null($right))) {
+            if ($operator === '!=') {
                 return true;
             }
 

@@ -65,7 +65,7 @@ class Variable
 
     /**
      * The filters to execute on the variable
-     * @var array<int, array<int, mixed>|string>
+     * @var array<int, array<int, mixed>>
      */
     protected array $filters = [];
 
@@ -224,26 +224,26 @@ class Variable
      */
     protected function parseFilterExpressions(string $filterName, array $args): array
     {
-        $filterArgts = [];
+        $filterArgs = [];
         $keywordArgs = [];
-        $lexerTagAtt = new Lexer(
+        $lexerTagAttr = new Lexer(
             '/\A'
             . trim(Token::TAG_ATTRIBUTES, '/')
             . '\z/'
         );
 
         foreach ($args as $arg) {
-            if ($lexerTagAtt->match($arg)) {
-                $keywordArgs[$lexerTagAtt->getStringMatch(1)] = $lexerTagAtt->getStringMatch(2);
+            if ($lexerTagAttr->match($arg)) {
+                $keywordArgs[$lexerTagAttr->getStringMatch(1)] = $lexerTagAttr->getStringMatch(2);
             } else {
-                $filterArgts[] = $arg;
+                $filterArgs[] = $arg;
             }
         }
 
         if (count($keywordArgs) > 0) {
-            $filterArgts[] = $keywordArgs;
+            $filterArgs[] = $keywordArgs;
         }
 
-        return [$filterName, $filterArgts];
+        return [$filterName, $filterArgs];
     }
 }

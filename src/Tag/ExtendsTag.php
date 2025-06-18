@@ -84,7 +84,7 @@ class ExtendsTag extends AbstractTag
     /**
     * {@inheritdoc}
     */
-    public function __construct(string $markup, &$tokens, Parser $parser)
+    public function __construct(string $markup, array &$tokens, Parser $parser)
     {
         $lexer = new Lexer('/("[^"]+"|\'[^\']+\')?/');
         if ($lexer->match($markup) && $lexer->isMatchNotNull(1)) {

@@ -71,7 +71,7 @@ class IncrementTag extends AbstractTag
     /**
     * {@inheritdoc}
     */
-    public function __construct(string $markup, &$tokens, Parser $parser)
+    public function __construct(string $markup, array &$tokens, Parser $parser)
     {
         $lexer = new Lexer('/(' . Token::VARIABLE_NAME . ')/');
         if ($lexer->match($markup)) {

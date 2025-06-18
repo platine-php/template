@@ -78,7 +78,7 @@ class IfTag extends AbstractCondition
     /**
     * {@inheritdoc}
     */
-    public function __construct(string $markup, &$tokens, Parser $parser)
+    public function __construct(string $markup, array &$tokens, Parser $parser)
     {
         //Initialize
         $this->nodeListHolders[count($this->blocks)] = [];

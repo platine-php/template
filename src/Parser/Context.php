@@ -417,7 +417,6 @@ class Context
         }
 
         $parts = explode(Token::VARIABLE_ATTR_SEPARATOR, $key);
-
         if ($parts !== false) {
             $object = $this->fetch((string) array_shift($parts));
             while (count($parts) > 0) {
@@ -425,9 +424,9 @@ class Context
                 // and since we can't dig deeper into plain values
                 // it can be thought as if it has a property with a null value
                 if (
-                    !is_object($object)
-                    && !is_array($object)
-                    && !is_string($object)
+                    is_object($object) === false
+                    && is_array($object) === false
+                    && is_string($object) === false
                 ) {
                     return null;
                 }
@@ -492,7 +491,7 @@ class Context
                     continue;
                 }
 
-                if (!is_object($object)) {
+                if (is_object($object) === false) {
                     // we got plain value, yet asked to resolve a part
                     // think plain values have a null part with any name
                     return null;
@@ -508,7 +507,7 @@ class Context
                 }
 
                 if ($object instanceof Drop) {
-                    if (!$object->hasKey($nextPartName)) {
+                    if ($object->hasKey($nextPartName) === false) {
                         return null;
                     }
 
@@ -524,21 +523,19 @@ class Context
                 }
 
                 // if a magic accessor method present...
-                if (is_object($object) && method_exists($object, '__get')) {
+                if (method_exists($object, '__get')) {
                     $object = $object->{$nextPartName};
                     continue;
                 }
 
                 // Inexistent property is a null, PHP-speak
-                if (!property_exists($object, $nextPartName)) {
+                if (property_exists($object, $nextPartName) === false) {
                     return null;
                 }
 
                 // then try a property (independent of accessibility)
-                if (property_exists($object, $nextPartName)) {
-                    $object = $object->{$nextPartName};
-                    continue;
-                }
+                $object = $object->{$nextPartName};
+                continue;
                 // we'll try casting this object in the next iteration
             }
 

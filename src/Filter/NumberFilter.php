@@ -161,7 +161,7 @@ class NumberFilter extends AbstractFilter
         string $decimalPoint = '.',
         string $separator = ','
     ): string {
-        if (is_numeric($variable) === false) {
+        if (is_string($variable) && is_numeric($variable) === false) {
             return $variable;
         }
 
@@ -187,7 +187,7 @@ class NumberFilter extends AbstractFilter
         string $decimalPoint = '.',
         string $separator = ','
     ): string {
-        if (is_numeric($variable) === false) {
+        if (is_string($variable) && is_numeric($variable) === false) {
             return $variable;
         }
 
@@ -235,13 +235,13 @@ class NumberFilter extends AbstractFilter
      * Units format
      * @param float|int|string|null $variable
      * @param int|string $precision
-     * @return float|int|string
+     * @return float|int|string|null
      */
     public static function sizeFormat(
         float|int|string|null $variable,
         int|string $precision = 2
-    ): float|int|string {
-        if (is_numeric($variable) === false) {
+    ): float|int|string|null {
+        if (is_string($variable) && is_numeric($variable) === false) {
             return $variable;
         }
 
