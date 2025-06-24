@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Platine\Test\Template\Tag;
 
+use DateTime;
 use Platine\Dev\PlatineTestCase;
 use Platine\Template\Exception\ParseException;
 use Platine\Template\Exception\RenderException;
@@ -130,6 +131,19 @@ class IfTagTest extends PlatineTestCase
         $tokens = ['true value', '{% else %}', 'else value', '{% endif %}'];
         $b = new IfTag('nb', $tokens, $parser);
         $c = new Context(['nb' => $generator]);
+
+        $output = $b->render($c);
+        $this->assertEquals('true value', $output);
+    }
+
+    public function testRenderObjectDatetime(): void
+    {
+        $date = new DateTime();
+
+        $parser = $this->getMockInstance(Parser::class);
+        $tokens = ['true value', '{% else %}', 'else value', '{% endif %}'];
+        $b = new IfTag('nb', $tokens, $parser);
+        $c = new Context(['nb' => $date]);
 
         $output = $b->render($c);
         $this->assertEquals('true value', $output);

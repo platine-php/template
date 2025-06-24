@@ -49,6 +49,7 @@ declare(strict_types=1);
 
 namespace Platine\Template\Parser;
 
+use DateTime;
 use Generator;
 use Platine\Template\Exception\RenderException;
 use Stringable;
@@ -85,6 +86,10 @@ abstract class AbstractCondition extends AbstractBlock
 
             if ($value instanceof Generator) {
                 return (string) $value->valid();
+            }
+
+            if ($value instanceof DateTime) {
+                return $value->format(DateTime::ATOM);
             }
 
             $class = get_class($value);
