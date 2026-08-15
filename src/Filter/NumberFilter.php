@@ -273,7 +273,10 @@ class NumberFilter extends AbstractFilter
             if (isset($suffixes[floor($base)])) {
                 $suffix = $suffixes[floor($base)];
             }
-            return round(pow(1024, $base - floor($base)), (int) $precision) . $suffix;
+            $exponent = $base - floor($base);
+            $value = pow(1024, $exponent);
+            $cleanValue = (float) sprintf('%.12f', $value);
+            return round($cleanValue, (int) $precision) . $suffix;
         }
 
         return $variable;
