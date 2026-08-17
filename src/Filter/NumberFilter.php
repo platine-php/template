@@ -245,7 +245,7 @@ class NumberFilter extends AbstractFilter
             return $variable;
         }
 
-        $size = (double) $variable;
+        $size = (float) $variable;
         if ($size > 0) {
             $base = log($size) / log(1024);
             $suffixes = ['B', 'K', 'M', 'G', 'T'];
